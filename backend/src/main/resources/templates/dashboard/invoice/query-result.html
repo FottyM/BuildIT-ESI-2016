@@ -1,0 +1,51 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>List all Invoices</title>
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"></link>
+</head>
+<body>
+
+<div class="container">
+<div class="panel panel-default">
+  <div class="panel-heading">List of Plants</div>
+  <div class="panel-body">
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Invoice URL</th>
+                <th>Total</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="table-row" th:each="i : ${invoices}">
+                <td th:text="${i.poLink}"></td>
+                <td th:text="${i.total}"></td>
+                <td>
+                    <form style ='float:left; padding:5px; height:0px' th:method="post" th:action="@{'/invoice/'}">
+                        <input type="hidden" name="status" th:value="PAID"></input>
+                        <input type="hidden" name="poLink" th:value="${i.poLink}"></input>
+                        <input type="hidden" name="total" th:value="${i.total}"></input>
+                        <button class="btn btn-default btn-xs" type="submit">Accept</button>
+                    </form>
+                    <form style ='float:left; padding:5px; height:0px' th:method="post" th:action="@{'/invoice/'}">
+                        <input type="hidden" name="status" th:value="REJECTED"></input>
+                        <input type="hidden" name="poLink" th:value="${i.poLink}"></input>
+                        <input type="hidden" name="total" th:value="${i.total}"></input>
+                        <button class="btn btn-default btn-xs" type="submit">Reject</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+    </div>
+</div>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</body>
+</html>

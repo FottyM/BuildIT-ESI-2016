@@ -1,0 +1,23 @@
+version: '2'
+
+services:
+  buildit:
+    image: buildit
+    ports:
+      - "8080:8080"
+    networks:
+      - my_network
+    environment:
+      POSTGRES: postgres
+      POSTGRES_USERNAME: postgres
+      POSTGRES_PASSWORD: mysecretword
+
+  postgres:
+    image: postgres
+    networks:
+      - my_network
+    environment:
+      POSTGRES_PASSWORD: mysecretword
+
+networks:
+  my_network:
