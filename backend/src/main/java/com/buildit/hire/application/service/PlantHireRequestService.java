@@ -73,6 +73,28 @@ public class PlantHireRequestService {
         return plantHireRequestRepository.getPlantHireRequestByPoUrlAndPrice(poUrl, price);
     }
 
+    public PlantHireRequestDTO rejectPlantHireRequest(Long id, String reason) throws PlantNotAvailableException {
+
+        PlantHireRequestDTO phr = findPlantHireRequest(PlantHireRequestID.of(id));
+        phr.setStatus(PlantHireRequestStatus.REJECTED);
+        phr.setComment(reason);
+
+        PlantHireRequest rejectedPhr = PlantHireRequest.of(
+                PlantHireRequestID.of(phr.get_id()),
+                phr.getPlantId(),
+                phr.getRentalPeriod(),
+                phr.getPrice(),
+                phr.getStatus(),
+                phr.getComment()
+        );
+
+
+        PlantHireRequestDTO pp=  new PlantHireRequestAssembler().toResource( plantHireRequestRepository.save(rejectedPhr));
+
+
+        return   pp;
+    }
+
     public PurchaseOrderDTO acceptPlantHireRequest(Long id, PlantHireRequestStatus status) throws PlantNotAvailableException {
 
         PlantHireRequestDTO phr = findPlantHireRequest(PlantHireRequestID.of(id));

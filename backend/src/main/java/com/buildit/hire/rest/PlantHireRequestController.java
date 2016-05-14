@@ -8,6 +8,7 @@ import com.buildit.hire.domain.model.PlantHireRequestID;
 import com.buildit.hire.domain.model.PlantHireRequestStatus;
 import com.buildit.inventory.application.dto.PlantInventoryEntryDTO;
 import com.buildit.inventory.application.service.RentalService;
+import com.buildit.invoice.application.dto.InvoiceDTO;
 import com.buildit.sales.application.dto.PurchaseOrderDTO;
 import com.buildit.sales.domain.model.POStatus;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,6 +66,15 @@ public class PlantHireRequestController {
                return new ResponseEntity<PurchaseOrderDTO>(phr, headers, HttpStatus.CONFLICT);
            }
         return new ResponseEntity<PurchaseOrderDTO>(phr, headers, HttpStatus.CREATED);
+    }
+
+    @RequestMapping(method = POST, path = "/phrs/{id}/reject")
+    public ResponseEntity<PlantHireRequestDTO>  rejectPlantHireQuestReject(@PathVariable Long id, @RequestBody PlantHireRequestDTO plantHireRequestDTO) throws PlantNotAvailableException {
+        PlantHireRequestDTO phr = phrService.rejectPlantHireRequest(id, plantHireRequestDTO.getComment());
+
+        HttpHeaders headers = new HttpHeaders();
+
+        return new ResponseEntity<PlantHireRequestDTO>(phr, headers, HttpStatus.OK);
     }
 
     @RequestMapping(method = GET, path = "/phrs/{id}")

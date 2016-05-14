@@ -22,6 +22,7 @@ public class PlantHireRequestDTO extends ResourceSupport {
     PlantHireRequestStatus status;
     Boolean isPaid;
     String poUrl;
+    String comment;
 
 
 }
