@@ -28,14 +28,11 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
-
 import javax.mail.internet.MimeMessage;
 import javax.mail.util.ByteArrayDataSource;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
 
 /**
  * Created by rain on 29.03.16.
