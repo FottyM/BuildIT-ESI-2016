@@ -81,4 +81,19 @@ public class InvoiceRestController {
         return new ResponseEntity<InvoiceDTO>(invoiceDTO, headers, HttpStatus.CREATED);
     }
 
+    @RequestMapping(method = POST, path = "/remind")
+    public ResponseEntity<InvoiceDTO> remindInvoice(@RequestBody InvoiceDTO invoiceDTO) throws Exception {
+        invoiceDTO = invoiceService.updateReminderReceived(invoiceDTO);
+
+        if(invoiceDTO == null){ //Invalid invoice received
+            invoiceDTO = new InvoiceDTO();
+            HttpHeaders headers = new HttpHeaders();
+            return new ResponseEntity<InvoiceDTO>(invoiceDTO, headers, HttpStatus.BAD_REQUEST);
+        }
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setLocation(new URI(invoiceDTO.getId().getHref()));
+        return new ResponseEntity<InvoiceDTO>(invoiceDTO, headers, HttpStatus.CREATED);
+    }
+
 }

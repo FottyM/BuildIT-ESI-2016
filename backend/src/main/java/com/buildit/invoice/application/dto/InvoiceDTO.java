@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.hateoas.ResourceSupport;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 /**
  * Created by rain on 27.04.16.
@@ -17,4 +18,5 @@ public class InvoiceDTO extends ResourceSupport {
     BigDecimal total;
     String poLink;
     InvoiceStatus status;
+    LocalDate reminderReceived;
 }

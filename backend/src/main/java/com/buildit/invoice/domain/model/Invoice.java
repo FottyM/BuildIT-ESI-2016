@@ -1,5 +1,6 @@
 package com.buildit.invoice.domain.model;
 
+import com.buildit.common.domain.model.BusinessPeriod;
 import com.buildit.hire.domain.model.PlantHireRequestID;
 import com.buildit.hire.domain.model.PlantHireRequestStatus;
 import com.buildit.sales.domain.model.PurchaseOrderID;
@@ -10,6 +11,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 /**
  * Created by rain on 27.04.16.
@@ -27,6 +29,8 @@ public class Invoice {
     BigDecimal total;
     @Enumerated(EnumType.STRING)
     InvoiceStatus status;
+
+    LocalDate reminderReceived;
 
 
     public static Invoice of(InvoiceID id, String poLink, BigDecimal total) {

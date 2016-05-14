@@ -28,6 +28,7 @@ public class InvoiceAssembler extends ResourceAssemblerSupport<Invoice, InvoiceD
         dto.setPoLink(invoice.getPoLink());
         dto.setTotal(invoice.getTotal());
         dto.setStatus(invoice.getStatus());
+        dto.setReminderReceived(invoice.getReminderReceived());
         return dto;
     }
 }

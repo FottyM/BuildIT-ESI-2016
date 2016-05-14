@@ -77,6 +77,15 @@ public class PlantHireRequestController {
         return new ResponseEntity<PlantHireRequestDTO>(phr, headers, HttpStatus.OK);
     }
 
+    @RequestMapping(method = POST, path = "/phrs/{id}/modify")
+    public ResponseEntity<PlantHireRequestDTO>  modifyPlantHireQuestReject(@PathVariable Long id, @RequestBody PlantHireRequestDTO plantHireRequestDTO) throws PlantNotAvailableException {
+        PlantHireRequestDTO phr = phrService.modifyPlantHireRequest(plantHireRequestDTO);
+
+        HttpHeaders headers = new HttpHeaders();
+
+        return new ResponseEntity<PlantHireRequestDTO>(phr, headers, HttpStatus.OK);
+    }
+
     @RequestMapping(method = GET, path = "/phrs/{id}")
     public PlantHireRequestDTO  getPhr(@PathVariable Long id) {
         PlantHireRequestDTO phr = phrService.findPlantHireRequest( PlantHireRequestID.of(id) );
