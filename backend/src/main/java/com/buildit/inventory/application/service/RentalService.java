@@ -1,15 +1,7 @@
 package com.buildit.inventory.application.service;
 
-import com.buildit.common.application.dto.BusinessPeriodDTO;
-
 import com.buildit.common.application.exceptions.PlantNotAvailableException;
-import com.buildit.common.application.exceptions.PlantNotFoundException;
-import com.buildit.common.application.service.BusinessPeriodAssembler;
-import com.buildit.hire.application.dto.PlantHireRequestDTO;
 import com.buildit.hire.application.service.PlantHireRequestAssembler;
-import com.buildit.hire.domain.model.PlantHireRequest;
-import com.buildit.hire.domain.model.PlantHireRequestID;
-import com.buildit.hire.domain.model.PlantHireRequestStatus;
 import com.buildit.hire.domain.repository.PlantHireRequestRepository;
 import com.buildit.hire.infrastructure.idgeneration.PlantHireRequestIdentifierGenerator;
 import com.buildit.inventory.application.dto.PlantInventoryEntryDTO;
@@ -20,7 +12,6 @@ import com.buildit.sales.domain.model.POStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.hateoas.Link;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;

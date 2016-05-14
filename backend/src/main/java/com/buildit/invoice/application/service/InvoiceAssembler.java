@@ -3,7 +3,6 @@ package com.buildit.invoice.application.service;
 import com.buildit.BuilditApplication;
 import com.buildit.invoice.application.dto.InvoiceDTO;
 import com.buildit.invoice.domain.model.Invoice;
-import com.buildit.sales.domain.model.PurchaseOrderID;
 import org.springframework.hateoas.mvc.ResourceAssemblerSupport;
 import org.springframework.stereotype.Service;
 

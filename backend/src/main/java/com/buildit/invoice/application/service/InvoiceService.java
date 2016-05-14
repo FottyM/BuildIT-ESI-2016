@@ -1,7 +1,5 @@
 package com.buildit.invoice.application.service;
 
-import com.buildit.common.domain.model.BusinessPeriod;
-import com.buildit.hire.application.dto.PlantHireRequestDTO;
 import com.buildit.hire.application.service.PlantHireRequestService;
 import com.buildit.hire.domain.model.PlantHireRequest;
 import com.buildit.invoice.application.dto.InvoiceDTO;
@@ -10,8 +8,6 @@ import com.buildit.invoice.domain.model.InvoiceID;
 import com.buildit.invoice.domain.model.InvoiceStatus;
 import com.buildit.invoice.domain.repository.InvoiceRepository;
 import com.buildit.invoice.infrastructure.idgeneration.InvoiceIdentifierGenerator;
-import com.buildit.sales.domain.model.POStatus;
-import com.buildit.sales.domain.model.PurchaseOrderID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

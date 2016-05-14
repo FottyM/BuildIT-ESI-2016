@@ -3,7 +3,6 @@ package com.buildit.hire.rest;
 import com.buildit.common.application.exceptions.PlantNotAvailableException;
 import com.buildit.hire.application.dto.PlantHireRequestDTO;
 import com.buildit.hire.application.service.PlantHireRequestService;
-import com.buildit.hire.domain.model.PlantHireRequest;
 import com.buildit.hire.domain.model.PlantHireRequestID;
 import com.buildit.hire.domain.model.PlantHireRequestStatus;
 import com.buildit.inventory.application.dto.PlantInventoryEntryDTO;
@@ -15,10 +14,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.URI;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
