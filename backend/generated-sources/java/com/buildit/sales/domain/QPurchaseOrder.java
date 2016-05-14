@@ -17,7 +17,7 @@ import com.mysema.query.types.path.PathInits;
 
 
 /**
- * QPurchaseOrder is a Querydsl query type for PurchaseOrder
+ * QPurchaseOrder is a Querydsl query type for PurchaseOrderRepository
  */
 @Generated("com.mysema.query.codegen.EntitySerializer")
 public class QPurchaseOrder extends EntityPathBase<PurchaseOrder> {
