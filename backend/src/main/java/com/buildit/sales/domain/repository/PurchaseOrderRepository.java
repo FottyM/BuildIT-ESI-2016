@@ -1,5 +1,6 @@
 package com.buildit.sales.domain.repository;
 
+import com.buildit.sales.domain.model.PurchaseOrder;
 import com.buildit.sales.domain.model.PurchaseOrderID;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -8,7 +9,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 
 
-public interface PurchaseOrderRepository extends JpaRepository<PurchaseOrderRepository,PurchaseOrderID>, CustomPurchaseOrderRepository {
+public interface PurchaseOrderRepository extends JpaRepository<PurchaseOrder,PurchaseOrderID>, CustomPurchaseOrderRepository {
 
 
 

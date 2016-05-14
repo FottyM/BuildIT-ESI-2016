@@ -3,6 +3,7 @@ package com.buildit.sales.application.service;
 import com.buildit.common.application.dto.BusinessPeriodDTO;
 import com.buildit.sales.application.dto.PurchaseOrderDTO;
 import com.buildit.sales.domain.model.PurchaseOrder;
+import com.buildit.sales.rest.PurchaseOrderRestController;
 import org.springframework.hateoas.mvc.ResourceAssemblerSupport;
 import org.springframework.stereotype.Service;
 
@@ -16,13 +17,15 @@ public class PurchaseOrderAssembler extends ResourceAssemblerSupport<PurchaseOrd
     @Override
     public PurchaseOrderDTO toResource(PurchaseOrder purchaseOrder) {
         PurchaseOrderDTO dto = createResourceWithId(purchaseOrder.getId().getId(), purchaseOrder);
-        dto.set_id(purchaseOrder.getId().getId());
-        dto.setRentalPeriod(BusinessPeriodDTO.of(purchaseOrder.getRentalPeriod().getStartDate(), purchaseOrder.getRentalPeriod().getEndDate()));
-        dto.setTotal(purchaseOrder.getTotal());
-        dto.setStatus(purchaseOrder.getStatus());
-        dto.setExtensions(purchaseOrder.getExtensions());
+
+        dto.setLink(purchaseOrder.getLink());
+//        dto.set_id(purchaseOrder.getId().getId());
+//        dto.setRentalPeriod(BusinessPeriodDTO.of(purchaseOrder.getRentalPeriod().getStartDate(), purchaseOrder.getRentalPeriod().getEndDate()));
+//        dto.setTotal(purchaseOrder.getTotal());
+//        dto.setStatus(purchaseOrder.getStatus());
+//        dto.setExtensions(purchaseOrder.getExtensions());
 
         return dto;
     }
-    }
+}
 
