@@ -22,11 +22,11 @@ public class QInvoice extends EntityPathBase<Invoice> {
 
     public static final QInvoice invoice = new QInvoice("invoice");
 
-    public final BooleanPath accepted = createBoolean("accepted");
-
     public final QInvoiceID id;
 
     public final StringPath poLink = createString("poLink");
+
+    public final EnumPath<InvoiceStatus> status = createEnum("status", InvoiceStatus.class);
 
     public final NumberPath<java.math.BigDecimal> total = createNumber("total", java.math.BigDecimal.class);
 

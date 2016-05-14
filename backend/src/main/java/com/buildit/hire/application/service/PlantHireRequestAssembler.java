@@ -34,6 +34,7 @@ public class PlantHireRequestAssembler extends ResourceAssemblerSupport<PlantHir
         dto.setStatus(plantHireRequest.getStatus());
         dto.setIsPaid(plantHireRequest.getIsPaid());
         dto.setPoUrl(plantHireRequest.getPoUrl());
+        dto.setComment(plantHireRequest.getComment());
         return dto;
     }
 

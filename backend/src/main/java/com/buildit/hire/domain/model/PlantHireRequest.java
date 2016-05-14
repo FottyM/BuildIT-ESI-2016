@@ -25,6 +25,7 @@ public class PlantHireRequest {
     PlantHireRequestStatus status;
     Boolean isPaid;
     String poUrl;
+    String comment;
 
     public static PlantHireRequest of(PlantHireRequestID id, Long plantId, BusinessPeriodDTO rentalPeriod, BigDecimal price) {
         BusinessPeriod bp = BusinessPeriod.of(rentalPeriod.getStartDate(),rentalPeriod.getEndDate());
@@ -49,6 +50,20 @@ public class PlantHireRequest {
         phr.price = price;
         phr.status = status;
         phr.isPaid = false;
+        return phr;
+    }
+
+    public static PlantHireRequest of(PlantHireRequestID id, Long plantId, BusinessPeriodDTO rentalPeriod, BigDecimal price, PlantHireRequestStatus status, String comment) {
+        BusinessPeriod bp = BusinessPeriod.of(rentalPeriod.getStartDate(),rentalPeriod.getEndDate());
+
+        PlantHireRequest phr = new PlantHireRequest();
+        phr.id = id;
+        phr.plantId = plantId;
+        phr.rentalPeriod = bp;
+        phr.price = price;
+        phr.status = status;
+        phr.isPaid = false;
+        phr.comment = comment;
         return phr;
     }
 

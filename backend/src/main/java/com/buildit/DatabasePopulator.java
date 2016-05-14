@@ -22,6 +22,7 @@ public class DatabasePopulator {
     @Bean
     public Jackson2RepositoryPopulatorFactoryBean repositoryPopulator() throws IOException {
 
+        System.out.println("Hit");
         Resource sourceData = new ClassPathResource("sample-catalog.json");
         Jackson2RepositoryPopulatorFactoryBean factory = new Jackson2RepositoryPopulatorFactoryBean();
         mapper.registerModule(new JavaTimeModule());

@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -57,6 +58,20 @@ public class InvoiceService {
 
             invoiceRepository.save(i);
             return invoiceAssembler.toResource(i);
+        }
+        return null;
+    }
+
+    public InvoiceDTO updateReminderReceived(InvoiceDTO invoiceDTO) {
+        boolean isValidInvoice = phrService.hasPlantHireRequestByPoUrlAndPrice(invoiceDTO.getPoLink(), invoiceDTO.getTotal());
+
+        if(isValidInvoice) {
+
+            Invoice incoice = invoiceRepository.findByPoUrlAndPrice(invoiceDTO.getPoLink(), invoiceDTO.getTotal());
+            incoice.setReminderReceived(LocalDate.now());
+
+            invoiceRepository.save(incoice);
+            return invoiceAssembler.toResource(incoice);
         }
         return null;
     }
