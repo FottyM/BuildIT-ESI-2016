@@ -48,11 +48,11 @@ public class RentalService {
             return result.getBody();
         } catch (final HttpClientErrorException e) {
             if (e.getStatusCode().equals(HttpStatus.CONFLICT)){
-
-                PurchaseOrderDTO purchaseOrderDTO  = order;
-                order.setStatus(POStatus.REJECTED);
-                System.out.println("ddddddddddddddddddddddddddddddddddddddddddddddd");
-                return purchaseOrderDTO;
+//
+//                PurchaseOrderDTO purchaseOrderDTO  = order;
+//                order.setStatus(POStatus.REJECTED);
+//                System.out.println("ddddddddddddddddddddddddddddddddddddddddddddddd");
+//                return purchaseOrderDTO;
 
 
                         }

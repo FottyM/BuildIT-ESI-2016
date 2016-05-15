@@ -1,5 +1,6 @@
 package com.buildit.sales.infrastructure.repository;
 
+import com.buildit.hire.domain.model.QPlantHireRequest;
 import com.buildit.hire.domain.repository.CustomPlantHireRequestRepository;
 import com.buildit.sales.domain.model.PurchaseOrder;
 import com.buildit.sales.domain.model.QPurchaseOrder;
@@ -17,10 +18,13 @@ public class PurchaseOrderRepositoryImpl implements CustomPurchaseOrderRepositor
     @Autowired
     EntityManager em;
 
-    QPurchaseOrder qPurchaseOrder = QPurchaseOrder.purchaseOrder;
+    QPlantHireRequest qPlantHireRequest = QPlantHireRequest.plantHireRequest;
+
     @Override
-    public List<PurchaseOrder> getAllPurchaseOrders() {
+    public List<String> getAllPurchaseOrders() {
         return new JPAQuery(em)
-                .from(qPurchaseOrder).list(qPurchaseOrder);
+                .from(qPlantHireRequest).list(qPlantHireRequest.poUrl);
+
+
     }
 }

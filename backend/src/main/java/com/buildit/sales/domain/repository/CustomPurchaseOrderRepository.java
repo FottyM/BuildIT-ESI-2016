@@ -9,5 +9,5 @@ import java.util.List;
  */
 public interface CustomPurchaseOrderRepository {
 
-    public List<PurchaseOrder> getAllPurchaseOrders();
+    public List<String> getAllPurchaseOrders();
 }

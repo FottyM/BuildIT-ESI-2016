@@ -14,7 +14,6 @@ public class PurchaseOrder {
 
     @EmbeddedId
     PurchaseOrderID id;
-
     String link;
 
 }

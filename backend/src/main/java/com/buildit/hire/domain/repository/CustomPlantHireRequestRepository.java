@@ -1,6 +1,7 @@
 package com.buildit.hire.domain.repository;
 
 import com.buildit.hire.domain.model.PlantHireRequest;
+import com.buildit.sales.domain.model.PurchaseOrder;
 import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.data.jpa.repository.Query;
 
@@ -11,4 +12,6 @@ public interface CustomPlantHireRequestRepository {
    public Boolean hasPlantHireRequestByPoUrlAndPrice(String poUrl, BigDecimal price);
 
    PlantHireRequest getPlantHireRequestByPoUrlAndPrice(String poUrl, BigDecimal price);
+
+
 }

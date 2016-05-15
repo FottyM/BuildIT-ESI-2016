@@ -24,14 +24,18 @@ public class PurchaseOrderService {
     PurchaseOrderAssembler purchaseOrderAssembler;
 
 
+
+
     public List<PurchaseOrderDTO> getPurchaseOrdersLinks() {
 
 
         List<PurchaseOrderDTO> purchaseOrderDTOs = new ArrayList<PurchaseOrderDTO>();
 
-        for (PurchaseOrder purchaseOrder:purchaseOrderRepository.getAllPurchaseOrders()) {
+        for (String purchaseUrl : purchaseOrderRepository.getAllPurchaseOrders()) {
 
-            purchaseOrderDTOs.add(purchaseOrderAssembler.toResource(purchaseOrder));
+            PurchaseOrderDTO purchaseOrderDTO = new PurchaseOrderDTO();
+               purchaseOrderDTO.setLink(purchaseUrl);
+            purchaseOrderDTOs.add(purchaseOrderDTO);
 
         }
 
