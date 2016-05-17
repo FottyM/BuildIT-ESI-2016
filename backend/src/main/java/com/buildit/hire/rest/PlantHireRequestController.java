@@ -21,6 +21,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.net.URI;
 import java.time.LocalDate;
 import java.util.LinkedList;
@@ -28,9 +29,9 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.springframework.web.bind.annotation.RequestMethod.*;
-
+@CrossOrigin
 @RestController
-@RequestMapping("/api/inventory/plants")
+@RequestMapping("/api/sales/")
 public class PlantHireRequestController {
     @Autowired
     PlantHireRequestService phrService;
@@ -41,7 +42,7 @@ public class PlantHireRequestController {
     public List<PlantInventoryEntryDTO> findAvailablePlants(
             @RequestParam(name = "name", required = false) Optional<String> plantName,
             @RequestParam(name = "startDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Optional<LocalDate> startDate,
-            @RequestParam(name = "endDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Optional<LocalDate> endDate) {
+            @RequestParam(name = "endDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Optional<LocalDate> endDate) throws IOException {
         List<PlantInventoryEntryDTO> response= rentalService.findAvailablePlants(plantName,startDate,endDate);
         return response;
     }

@@ -48,12 +48,9 @@ import java.util.regex.Pattern;
 @IntegrationComponentScan
 @EnableHypermediaSupport(type = EnableHypermediaSupport.HypermediaType.HAL)
 public class BuilditApplication {
-
-
     @Configuration
     static class ObjectMapperCustomizer {
-        @Autowired
-        @Qualifier("_halObjectMapper")
+        @Autowired @Qualifier("_halObjectMapper")
         private ObjectMapper springHateoasObjectMapper;
 
         @Bean(name = "objectMapper")
@@ -135,6 +132,7 @@ public class BuilditApplication {
                                 .handle("invoiceProcessor", "processInvoiceGreater"))
                 )
                 .get();
+
     }
 
 
