@@ -60,20 +60,19 @@ public class RentalService {
 
                 PurchaseOrderDTO purchaseOrderDTO  = order;
                 order.setStatus(POStatus.REJECTED);
-                System.out.println("ddddddddddddddddddddddddddddddddddddddddddddddd");
-                return purchaseOrderDTO;
+                 return purchaseOrderDTO;
 
 
-                        }
+            }
         }
         return null;
     }
 
 
     public List<PlantInventoryEntryDTO> findAvailablePlants(Optional<String> plantName, @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Optional<LocalDate> startDate, @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Optional<LocalDate> endDate) {
-               PlantInventoryEntryDTO[] plants = restTemplate.getForObject(
+        PlantInventoryEntryDTO[] plants = restTemplate.getForObject(
                 "http://" + host + ":" + port + "api/inventory/plants?name={name}&startDate={start}&endDate={end}",
-                PlantInventoryEntryDTO[].class, plantName, startDate, endDate);
+                PlantInventoryEntryDTO[].class, plantName.get(), startDate.get(),endDate.get());
         return Arrays.asList(plants);
     }
 
@@ -84,12 +83,3 @@ public class RentalService {
 
 
 }
-
-
-
-
-
-
-
-
-

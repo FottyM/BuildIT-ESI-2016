@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
@@ -37,7 +38,7 @@ public class DashboardController {
     @RequestMapping(method = POST, path = "/catalog/query")
     public String queryPlantCatalog(Model model, CatalogQueryDTO query) {
 //        List<PlantInventoryEntryDTO> availablePlants = rentalService.findAvailablePlants(
-//                query.getName(),
+//                Optional.of(query.getName()),
 //                query.getRentalPeriod().getStartDate(),
 //                query.getRentalPeriod().getEndDate());
 //        model.addAttribute("plants",availablePlants);
