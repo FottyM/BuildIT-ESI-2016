@@ -1,6 +1,8 @@
 package com.buildit.hire.rest;
 
+import com.buildit.common.application.dto.BusinessPeriodDTO;
 import com.buildit.common.application.exceptions.PlantNotAvailableException;
+import com.buildit.common.domain.model.BusinessPeriod;
 import com.buildit.hire.application.dto.PlantHireRequestDTO;
 import com.buildit.hire.application.service.PlantHireRequestService;
 import com.buildit.hire.domain.model.PlantHireRequest;
@@ -133,5 +135,12 @@ public class PlantHireRequestController {
         return phrdto;
     }
 
+    @RequestMapping(method = POST, path = "/po/{id}/extension")
+    public PurchaseOrderDTO askForExtension(@PathVariable Long id, @RequestBody BusinessPeriodDTO businessPeriodDTO) {
+        return  phrService.extendPurchaseOrder(id,businessPeriodDTO);
+
+
+
+    }
 
 }

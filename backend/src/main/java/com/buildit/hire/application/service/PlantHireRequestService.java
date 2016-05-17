@@ -36,6 +36,8 @@ import org.springframework.web.client.RestTemplate;
 
 import java.time.temporal.ChronoUnit;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by rain on 30.03.16.
@@ -69,32 +71,18 @@ public class PlantHireRequestService {
     public PlantHireRequestDTO findPlantHireRequest(PlantHireRequestID phrid) {
         return plantHireRequestAssembler.toResource(plantHireRequestRepository.findOne(phrid));
     }
-    public List<PurchaseOrderDTO>findsubmitedPO() {
 
-        List<PlantHireRequest> plantHireRequestList = plantHireRequestRepository.getListOfPos();
-
-        List<PurchaseOrderDTO> purchaseOrderDTOList = new ArrayList<PurchaseOrderDTO>();
-
-        for (PlantHireRequest plantHireRequest: plantHireRequestList) {
-
-            purchaseOrderDTOList.add(rentalService.findPurchaseOrderDetails(plantHireRequest.getPoUrl()));
-
-        }
-
-        return purchaseOrderDTOList;
-    }
     public PlantHireRequest _findPlantHireRequest(PlantHireRequestID phrid) {
         return plantHireRequestRepository.findOne(phrid);
     }
 
-    public boolean hasPlantHireRequestByPoUrlAndPrice(String poUrl, BigDecimal price){
+    public boolean hasPlantHireRequestByPoUrlAndPrice(String poUrl, BigDecimal price) {
         return plantHireRequestRepository.hasPlantHireRequestByPoUrlAndPrice(poUrl, price);
     }
 
-    public PlantHireRequest _getPlantHireRequestByPoUrlAndPrice(String poUrl, BigDecimal price){
+    public PlantHireRequest _getPlantHireRequestByPoUrlAndPrice(String poUrl, BigDecimal price) {
         return plantHireRequestRepository.getPlantHireRequestByPoUrlAndPrice(poUrl, price);
     }
-
 
     public PlantHireRequestDTO rejectPlantHireRequest(Long id, String reason) throws PlantNotAvailableException {
 
@@ -103,7 +91,7 @@ public class PlantHireRequestService {
         phr.setComment(reason);
 
         //allow reject till 1 day before
-        if(ChronoUnit.DAYS.between(LocalDate.now(), phr.getRentalPeriod().getStartDate()) < 1){
+        if (ChronoUnit.DAYS.between(LocalDate.now(), phr.getRentalPeriod().getStartDate()) < 1) {
             return null;
         }
 
@@ -111,11 +99,12 @@ public class PlantHireRequestService {
         rejectedPhr.setStatus(PlantHireRequestStatus.REJECTED);
 
 
-        PlantHireRequestDTO pp=  new PlantHireRequestAssembler().toResource( plantHireRequestRepository.save(rejectedPhr));
+        PlantHireRequestDTO pp = new PlantHireRequestAssembler().toResource(plantHireRequestRepository.save(rejectedPhr));
 
 
-        return   pp;
+        return pp;
     }
+
 
     public PurchaseOrderDTO acceptPlantHireRequest(Long id, PlantHireRequestStatus status) throws PlantNotAvailableException {
 
@@ -124,9 +113,9 @@ public class PlantHireRequestService {
         acceptedPhr.setStatus(status);
 
 
-        PlantHireRequestDTO pp=  new PlantHireRequestAssembler().toResource( plantHireRequestRepository.save(acceptedPhr));
+        PlantHireRequestDTO pp = new PlantHireRequestAssembler().toResource(plantHireRequestRepository.save(acceptedPhr));
 
-        if(status==PlantHireRequestStatus.REJECTED){
+        if (status == PlantHireRequestStatus.REJECTED) {
             return null;
         }
 
@@ -138,7 +127,7 @@ public class PlantHireRequestService {
         order.setRentalPeriod(pp.getRentalPeriod());
 
 
-        return   rentalService.createPurchaseOrder(order); //Needs at least mock
+        return rentalService.createPurchaseOrder(order); //Needs at least mock
         //return new PurchaseOrderDTO();
     }
 
@@ -193,34 +182,37 @@ public class PlantHireRequestService {
         return new PlantHireRequestDTO();
     }
 
-//    public PlantHireRequestDTO savePlantHireRequestReject(Long id) throws PlantNotAvailableException {
-//
-//        PlantHireRequestDTO phr = findPlantHireRequest(PlantHireRequestID.of(id));
-//        phr.setStatus(PlantHireRequestStatus.REJECTED);
-//
-//        PlantHireRequest acceptedPhr = PlantHireRequest.of(
-//                PlantHireRequestID.of(phr.get_id()),
-//                phr.getPlantId(),
-//                phr.getRentalPeriod(),
-//                phr.getPrice(),
-//                phr.getStatus()
-//        );
-//
-//
-//
-//
-//        PlantHireRequestDTO pp=  new PlantHireRequestAssembler().toResource( plantHireRequestRepository.save(acceptedPhr));
-//
-//        PlantInventoryEntryDTO plant = new PlantInventoryEntryDTO();
-//        plant.add(new Link("http://rentit.com/api/inventory/plants/13"));
-//
-//        PurchaseOrderDTO order = new PurchaseOrderDTO();
-//        order.setPlant(plant);
-//        order.setRentalPeriod(pp.getRentalPeriod());
-//
-//
-//        return   phr;
-//    }
+    public List<PurchaseOrderDTO> findsubmitedPO() {
+
+        List<PlantHireRequest> plantHireRequestList = plantHireRequestRepository.getListOfPos();
+
+        List<PurchaseOrderDTO> purchaseOrderDTOList = new ArrayList<PurchaseOrderDTO>();
+
+        for (PlantHireRequest plantHireRequest : plantHireRequestList) {
+
+            purchaseOrderDTOList.add(rentalService.findPurchaseOrderDetails(plantHireRequest.getPoUrl()));
+
+        }
+
+        return purchaseOrderDTOList;
+
+    }
+
+    public PurchaseOrderDTO extendPurchaseOrder(Long id, BusinessPeriodDTO businessPeriodDTO) {
+
+        PlantHireRequest plantHireRequest = plantHireRequestRepository.findOne(PlantHireRequestID.of(id));
+
+        Pattern p = Pattern.compile(".*s\\/ *(.*)");
+        Matcher m = p.matcher(plantHireRequest.getPoUrl());
+        m.find();
+        Long poId = Long.parseLong(m.group(1));
+
+
+
+
+        return rentalService.extendPurchaseOrder(poId,businessPeriodDTO);
+    }
+
 }
 
 

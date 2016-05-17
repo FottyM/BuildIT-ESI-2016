@@ -82,5 +82,21 @@ public class RentalService {
                 PurchaseOrderDTO.class);
         return purchaseOrderDTO;
     }
+    public PurchaseOrderDTO extendPurchaseOrder(Long id, BusinessPeriodDTO businessPeriodDTO) {
+        try {
+            ResponseEntity<PurchaseOrderDTO> result = restTemplate.postForEntity(
+                    "http://" + host + ":" + port + "/api/sales/orders/{id}/extensions",businessPeriodDTO, PurchaseOrderDTO.class,id);
+
+            return result.getBody();
+        } catch (final HttpClientErrorException e) {
+            if (e.getStatusCode().equals(HttpStatus.CONFLICT)){
+
+                return new PurchaseOrderDTO();
+
+
+            }
+        }
+        return null;
+    }
 
 }
