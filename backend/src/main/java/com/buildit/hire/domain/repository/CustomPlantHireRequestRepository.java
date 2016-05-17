@@ -11,4 +11,5 @@ public interface CustomPlantHireRequestRepository {
    public Boolean hasPlantHireRequestByPoUrlAndPrice(String poUrl, BigDecimal price);
 
    PlantHireRequest getPlantHireRequestByPoUrlAndPrice(String poUrl, BigDecimal price);
+   public List<PlantHireRequest> getListOfPos();
 }

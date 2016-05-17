@@ -23,7 +23,7 @@ public class PurchaseOrderAssembler extends ResourceAssemblerSupport<PurchaseOrd
     @Override
     public PurchaseOrderDTO toResource(PurchaseOrder purchaseOrder) {
         PurchaseOrderDTO dto = createResourceWithId(purchaseOrder.getId().getId(), purchaseOrder);
-        dto.set_id(purchaseOrder.getId().getId());
+//        dto.set_id(purchaseOrder.getId().getId());
         dto.setRentalPeriod(BusinessPeriodDTO.of(purchaseOrder.getRentalPeriod().getStartDate(), purchaseOrder.getRentalPeriod().getEndDate()));
         dto.setTotal(purchaseOrder.getTotal());
         dto.setStatus(purchaseOrder.getStatus());
@@ -31,5 +31,5 @@ public class PurchaseOrderAssembler extends ResourceAssemblerSupport<PurchaseOrd
 
         return dto;
     }
-    }
+}
 

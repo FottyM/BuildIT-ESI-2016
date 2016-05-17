@@ -69,7 +69,20 @@ public class PlantHireRequestService {
     public PlantHireRequestDTO findPlantHireRequest(PlantHireRequestID phrid) {
         return plantHireRequestAssembler.toResource(plantHireRequestRepository.findOne(phrid));
     }
+    public List<PurchaseOrderDTO>findsubmitedPO() {
 
+        List<PlantHireRequest> plantHireRequestList = plantHireRequestRepository.getListOfPos();
+
+        List<PurchaseOrderDTO> purchaseOrderDTOList = new ArrayList<PurchaseOrderDTO>();
+
+        for (PlantHireRequest plantHireRequest: plantHireRequestList) {
+
+            purchaseOrderDTOList.add(rentalService.findPurchaseOrderDetails(plantHireRequest.getPoUrl()));
+
+        }
+
+        return purchaseOrderDTOList;
+    }
     public PlantHireRequest _findPlantHireRequest(PlantHireRequestID phrid) {
         return plantHireRequestRepository.findOne(phrid);
     }
