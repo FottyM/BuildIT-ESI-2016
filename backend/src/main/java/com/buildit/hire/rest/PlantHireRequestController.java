@@ -16,11 +16,14 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.time.LocalDate;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
@@ -70,16 +73,31 @@ public class PlantHireRequestController {
 
     @RequestMapping(method = POST, path = "/phrs/{id}/reject")
     public ResponseEntity<PlantHireRequestDTO>  rejectPlantHireQuestReject(@PathVariable Long id, @RequestBody PlantHireRequestDTO plantHireRequestDTO) throws PlantNotAvailableException {
-        PlantHireRequestDTO phr = phrService.rejectPlantHireRequest(id, plantHireRequestDTO.getComment());
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        List<String> roles = new LinkedList<String>();
 
-        HttpHeaders headers = new HttpHeaders();
+        UserDetails details = null;
+        if (principal instanceof UserDetails) {
+            details = (UserDetails) principal;
+            System.out.println(details);
+        }
 
-        return new ResponseEntity<PlantHireRequestDTO>(phr, headers, HttpStatus.OK);
+        String role = details.getAuthorities().toArray()[0].toString();
+
+        if(role.compareTo("SITE_ENGINEER") == 0 || role.compareTo("WORK_ENGINEER") == 0 ) {
+
+            PlantHireRequestDTO phr = phrService.rejectPlantHireRequest(id, plantHireRequestDTO.getComment());
+
+            HttpHeaders headers = new HttpHeaders();
+
+            return new ResponseEntity<PlantHireRequestDTO>(phr, headers, HttpStatus.OK);
+        }
+        return new ResponseEntity<PlantHireRequestDTO>(new PlantHireRequestDTO(), HttpStatus.FORBIDDEN);
     }
 
     @RequestMapping(method = POST, path = "/phrs/{id}/modify")
     public ResponseEntity<PlantHireRequestDTO>  modifyPlantHireQuestReject(@PathVariable Long id, @RequestBody PlantHireRequestDTO plantHireRequestDTO) throws PlantNotAvailableException {
-        PlantHireRequestDTO phr = phrService.modifyPlantHireRequest(plantHireRequestDTO);
+        PlantHireRequestDTO phr = phrService.modifyPlantHireRequest(plantHireRequestDTO, id);
 
         HttpHeaders headers = new HttpHeaders();
 

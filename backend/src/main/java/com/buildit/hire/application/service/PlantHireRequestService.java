@@ -28,6 +28,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.hateoas.Link;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
@@ -123,35 +125,59 @@ public class PlantHireRequestService {
         order.setRentalPeriod(pp.getRentalPeriod());
 
 
-        return   rentalService.createPurchaseOrder(order);
+        return   rentalService.createPurchaseOrder(order); //Needs at least mock
+        //return new PurchaseOrderDTO();
     }
 
     public void save(PlantHireRequest phr) {
         plantHireRequestRepository.save(phr);
     }
 
-    public PlantHireRequestDTO modifyPlantHireRequest(PlantHireRequestDTO plantHireRequestDTO) {
-        PlantHireRequestDTO phr = findPlantHireRequest(PlantHireRequestID.of(plantHireRequestDTO.get_id()));
+    public PlantHireRequestDTO modifyPlantHireRequest(PlantHireRequestDTO plantHireRequestDTO, Long phrId) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        List<String> roles = new LinkedList<String>();
 
-        PlantHireRequestDTO pp = phr;
-        if(phr != null) {
-
-
-            PlantHireRequest modifiedPhr = _findPlantHireRequest(PlantHireRequestID.of(plantHireRequestDTO.get_id()));
-            if(plantHireRequestDTO.getPlantId() != null){modifiedPhr.setPlantId(plantHireRequestDTO.getPlantId());}
-            if(plantHireRequestDTO.getRentalPeriod() != null){
-                BusinessPeriod bp = BusinessPeriod.of(plantHireRequestDTO.getRentalPeriod().getStartDate(), plantHireRequestDTO.getRentalPeriod().getEndDate());
-                modifiedPhr.setRentalPeriod(bp);
-            }
-            if(plantHireRequestDTO.getPrice() != null){modifiedPhr.setPrice(plantHireRequestDTO.getPrice());}
-            if(plantHireRequestDTO.getStatus() != null){modifiedPhr.setStatus(plantHireRequestDTO.getStatus());}
-            if(plantHireRequestDTO.getComment() != null){modifiedPhr.setComment(plantHireRequestDTO.getComment());}
-
-
-            pp = new PlantHireRequestAssembler().toResource(plantHireRequestRepository.save(modifiedPhr));
+        UserDetails details = null;
+        if (principal instanceof UserDetails) {
+            details = (UserDetails) principal;
+            System.out.println(details);
         }
 
-        return   pp;
+        String role = details.getAuthorities().toArray()[0].toString();
+
+        PlantHireRequestDTO phr = findPlantHireRequest(PlantHireRequestID.of(phrId));
+        if (role.compareTo("SITE_ENGINEER") == 0 && phr.getStatus().compareTo(PlantHireRequestStatus.OPEN) != 0
+                || role.compareTo("WORK_ENGINEER") == 0) {
+
+            PlantHireRequestDTO pp = phr;
+            if (phr != null) {
+
+
+                PlantHireRequest modifiedPhr = _findPlantHireRequest(PlantHireRequestID.of(phrId));
+                if (plantHireRequestDTO.getPlantId() != null) {
+                    modifiedPhr.setPlantId(plantHireRequestDTO.getPlantId());
+                }
+                if (plantHireRequestDTO.getRentalPeriod() != null) {
+                    BusinessPeriod bp = BusinessPeriod.of(plantHireRequestDTO.getRentalPeriod().getStartDate(), plantHireRequestDTO.getRentalPeriod().getEndDate());
+                    modifiedPhr.setRentalPeriod(bp);
+                }
+                if (plantHireRequestDTO.getPrice() != null) {
+                    modifiedPhr.setPrice(plantHireRequestDTO.getPrice());
+                }
+                if (plantHireRequestDTO.getStatus() != null) {
+                    modifiedPhr.setStatus(plantHireRequestDTO.getStatus());
+                }
+                if (plantHireRequestDTO.getComment() != null) {
+                    modifiedPhr.setComment(plantHireRequestDTO.getComment());
+                }
+
+
+                pp = new PlantHireRequestAssembler().toResource(plantHireRequestRepository.save(modifiedPhr));
+            }
+
+            return pp;
+        }
+        return new PlantHireRequestDTO();
     }
 
 //    public PlantHireRequestDTO savePlantHireRequestReject(Long id) throws PlantNotAvailableException {
