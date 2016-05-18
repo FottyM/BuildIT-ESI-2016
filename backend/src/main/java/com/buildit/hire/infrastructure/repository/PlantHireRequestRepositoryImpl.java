@@ -1,6 +1,7 @@
 package com.buildit.hire.infrastructure.repository;
 
 import com.buildit.hire.domain.model.PlantHireRequest;
+import com.buildit.hire.domain.model.PlantHireRequestStatus;
 import com.buildit.hire.domain.model.QPlantHireRequest;
 import com.buildit.hire.domain.repository.CustomPlantHireRequestRepository;
 import com.mysema.query.jpa.JPASubQuery;
@@ -31,5 +32,10 @@ public class PlantHireRequestRepositoryImpl implements CustomPlantHireRequestRep
         return new JPAQuery(em)
                 .from(qPlantHireRequest)
                 .where(qPlantHireRequest.poUrl.eq(poUrl).and(qPlantHireRequest.price.eq(price))).uniqueResult(qPlantHireRequest) ;
+    }
+
+    @Override
+    public List<PlantHireRequest> getListOfPos() {
+        return new JPAQuery(em).from(qPlantHireRequest).where(qPlantHireRequest.status.eq(PlantHireRequestStatus.OPEN)).list(qPlantHireRequest);
     }
 }

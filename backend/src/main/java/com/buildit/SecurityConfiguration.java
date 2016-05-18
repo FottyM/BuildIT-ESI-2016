@@ -19,6 +19,7 @@ import static org.springframework.http.HttpMethod.OPTIONS;
 /**
  * Created by rain on 29.04.16.
  */
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration {

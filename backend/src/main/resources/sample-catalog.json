@@ -1,6 +1,65 @@
-[ {"_class" : "com.buildit.invoice.domain.model.Invoice", "id": 2, "poLink": "http://rentit.com/api/sales/orders/2", "total": 150, "status":"ACCEPTED"},
-  {"_class" : "com.buildit.invoice.domain.model.Invoice", "id": 3, "poLink": "http://rentit.com/api/sales/orders/3", "total": 150, "status":"RECEIVED"},
-  {"_class" : "com.buildit.invoice.domain.model.Invoice", "id": 4, "poLink": "http://rentit.com/api/sales/orders/4", "total": 250, "status":"RECEIVED"}
-,
-  {"_class" : "com.buildit.hire.domain.model.PlantHireRequest", "id": 1, "constructionSiteId": 0, "price": 150, "rentalPeriod": {"startDate":"2016-11-12", "endDate":"2016-11-14"}, "status":"PENDING", "isPaid":false, "poUrl":"http://rentit.com/api/sales/orders/2", "supplier": "asdf" }
+[
+  {
+    "_class": "com.buildit.invoice.domain.model.Invoice",
+    "id": 2,
+    "poLink": "http://rentit.com/api/sales/orders/2",
+    "total": 150,
+    "status": "ACCEPTED"
+  },
+  {
+    "_class": "com.buildit.invoice.domain.model.Invoice",
+    "id": 3,
+    "poLink": "http://rentit.com/api/sales/orders/3",
+    "total": 150,
+    "status": "RECEIVED"
+  },
+  {
+    "_class": "com.buildit.invoice.domain.model.Invoice",
+    "id": 4,
+    "poLink": "http://rentit.com/api/sales/orders/4",
+    "total": 250,
+    "status": "RECEIVED"
+  },
+  {
+    "_class": "com.buildit.hire.domain.model.PlantHireRequest",
+    "id": 1,
+    "constructionSiteId": 0,
+    "price": 150,
+    "rentalPeriod": {
+      "startDate": "2016-11-12",
+      "endDate": "2016-11-14"
+    },
+    "status": "PENDING",
+    "isPaid": false,
+    "poUrl": "http://rentit.com/api/sales/orders/2",
+    "supplier": "asdf"
+  },
+  {
+    "_class": "com.buildit.hire.domain.model.PlantHireRequest",
+    "id": 2,
+    "constructionSiteId": 0,
+    "price": 150,
+    "rentalPeriod": {
+      "startDate": "2016-11-12",
+      "endDate": "2016-11-14"
+    },
+    "status": "OPEN",
+    "isPaid": false,
+    "poUrl": "http://localhost:8090/api/sales/orders/2",
+    "supplier": "asdf"
+  },
+  {
+    "_class": "com.buildit.hire.domain.model.PlantHireRequest",
+    "id": 3,
+    "constructionSiteId": 0,
+    "price": 150,
+    "rentalPeriod": {
+      "startDate": "2016-11-12",
+      "endDate": "2016-11-14"
+    },
+    "status": "OPEN",
+    "isPaid": false,
+    "poUrl": "http://localhost:8090/api/sales/orders/3",
+    "supplier": "Batman"
+  }
 ]
