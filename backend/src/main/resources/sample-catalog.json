@@ -60,6 +60,6 @@
     "status": "OPEN",
     "isPaid": false,
     "poUrl": "http://localhost:8090/api/sales/orders/3",
-    "supplier": "asdf"
+    "supplier": "Batman"
   }
 ]

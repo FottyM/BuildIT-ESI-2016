@@ -207,9 +207,6 @@ public class PlantHireRequestService {
         m.find();
         Long poId = Long.parseLong(m.group(1));
 
-
-
-
         return rentalService.extendPurchaseOrder(poId,businessPeriodDTO);
     }
 
