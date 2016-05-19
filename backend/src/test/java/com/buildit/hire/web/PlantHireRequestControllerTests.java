@@ -7,23 +7,18 @@ import com.buildit.hire.application.dto.PlantHireRequestDTO;
 import com.buildit.hire.rest.PlantHireRequestController;
 import com.buildit.inventory.application.dto.PlantInventoryEntryDTO;
 import com.buildit.inventory.application.service.RentalService;
-import com.buildit.sales.application.dto.PurchaseOrderDTO;
-import com.buildit.sales.domain.model.POStatus;
+import com.buildit.orders.application.dto.PurchaseOrderDTO;
+import com.buildit.orders.domain.model.POStatus;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
-import org.springframework.hateoas.Link;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.MediaType;
 import org.springframework.http.client.ClientHttpRequestExecution;
@@ -36,10 +31,8 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.context.WebApplicationContext;
-import org.springframework.hateoas.hal.Jackson2HalModule;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -49,12 +42,7 @@ import java.util.List;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-
-
-import static org.mockito.Mockito.when;
 
 /**
  * Created by rain on 30.03.16.

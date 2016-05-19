@@ -1,4 +1,4 @@
-package com.buildit.sales.domain.model;
+package com.buildit.orders.domain.model;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

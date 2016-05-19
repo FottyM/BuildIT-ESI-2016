@@ -2,18 +2,14 @@ package com.buildit.hire.rest;
 
 import com.buildit.common.application.dto.BusinessPeriodDTO;
 import com.buildit.common.application.exceptions.PlantNotAvailableException;
-import com.buildit.common.domain.model.BusinessPeriod;
 import com.buildit.hire.application.dto.PlantHireRequestDTO;
 import com.buildit.hire.application.service.PlantHireRequestService;
-import com.buildit.hire.domain.model.PlantHireRequest;
 import com.buildit.hire.domain.model.PlantHireRequestID;
 import com.buildit.hire.domain.model.PlantHireRequestStatus;
 import com.buildit.inventory.application.dto.PlantInventoryEntryDTO;
 import com.buildit.inventory.application.service.RentalService;
-import com.buildit.invoice.application.dto.InvoiceDTO;
-import com.buildit.sales.application.dto.PurchaseOrderDTO;
-import com.buildit.sales.domain.model.POStatus;
-import com.buildit.sales.domain.model.PurchaseOrder;
+import com.buildit.orders.application.dto.PurchaseOrderDTO;
+import com.buildit.orders.domain.model.POStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpHeaders;
@@ -21,11 +17,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
-import java.net.URI;
 import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
@@ -35,7 +29,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/api/sales/")
+@RequestMapping("/api/buildit/")
 public class PlantHireRequestController {
     @Autowired
     PlantHireRequestService phrService;
