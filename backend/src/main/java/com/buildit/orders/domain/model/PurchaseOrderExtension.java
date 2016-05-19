@@ -1,4 +1,4 @@
-package com.buildit.sales.domain.model;
+package com.buildit.orders.domain.model;
 
 import com.buildit.common.domain.model.BusinessPeriod;
 import lombok.AccessLevel;

@@ -1,9 +1,9 @@
-package com.buildit.sales.application.dto;
+package com.buildit.orders.application.dto;
 
 import com.buildit.common.application.dto.BusinessPeriodDTO;
 import com.buildit.inventory.application.dto.PlantInventoryEntryDTO;
-import com.buildit.sales.domain.model.POStatus;
-import com.buildit.sales.domain.model.PurchaseOrderExtensionID;
+import com.buildit.orders.domain.model.POStatus;
+import com.buildit.orders.domain.model.PurchaseOrderExtensionID;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.hateoas.ResourceSupport;

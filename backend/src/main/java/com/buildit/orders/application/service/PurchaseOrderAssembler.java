@@ -1,17 +1,10 @@
-package com.buildit.sales.application.service;
+package com.buildit.orders.application.service;
 
 import com.buildit.common.application.dto.BusinessPeriodDTO;
-import com.buildit.common.application.exceptions.PlantNotFoundException;
-import com.buildit.sales.application.dto.PurchaseOrderDTO;
-import com.buildit.sales.domain.model.PurchaseOrder;
-import com.buildit.sales.domain.model.PurchaseOrderExtension;
-import com.buildit.sales.domain.model.PurchaseOrderExtensionID;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.buildit.orders.application.dto.PurchaseOrderDTO;
+import com.buildit.orders.domain.model.PurchaseOrder;
 import org.springframework.hateoas.mvc.ResourceAssemblerSupport;
 import org.springframework.stereotype.Service;
-
-import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
-import static org.springframework.http.HttpMethod.*;
 
 @Service
 public class PurchaseOrderAssembler extends ResourceAssemblerSupport<PurchaseOrder, PurchaseOrderDTO> {

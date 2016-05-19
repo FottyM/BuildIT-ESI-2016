@@ -1,8 +1,8 @@
-package com.buildit.sales.infrastructure.idgeneration;
+package com.buildit.orders.infrastructure.idgeneration;
 
 import com.buildit.common.infrastructure.HibernateBasedIdentifierGenerator;
-import com.buildit.sales.domain.model.PurchaseOrderExtensionID;
-import com.buildit.sales.domain.model.PurchaseOrderID;
+import com.buildit.orders.domain.model.PurchaseOrderExtensionID;
+import com.buildit.orders.domain.model.PurchaseOrderID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

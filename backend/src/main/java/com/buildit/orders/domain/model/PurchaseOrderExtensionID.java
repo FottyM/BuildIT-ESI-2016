@@ -1,4 +1,4 @@
-package com.buildit.sales.domain.model;
+package com.buildit.orders.domain.model;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -12,6 +12,6 @@ import java.io.Serializable;
 @Value
 @NoArgsConstructor(force = true, access = AccessLevel.PROTECTED)
 @AllArgsConstructor(staticName = "of")
-public class PurchaseOrderID implements Serializable {
+public class PurchaseOrderExtensionID implements Serializable {
     Long id;
 }

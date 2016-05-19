@@ -1,7 +1,10 @@
-package com.buildit.sales.domain.model;
+package com.buildit.orders.domain;
 
 import static com.mysema.query.types.PathMetadataFactory.*;
 
+import com.buildit.orders.domain.model.POStatus;
+import com.buildit.orders.domain.model.PurchaseOrder;
+import com.buildit.orders.domain.model.PurchaseOrderExtensionID;
 import com.mysema.query.types.path.*;
 
 import com.mysema.query.types.PathMetadata;
