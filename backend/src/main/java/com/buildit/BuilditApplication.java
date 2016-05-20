@@ -118,22 +118,22 @@ public class BuilditApplication {
     String gmailUsername;
     @Value("${gmail.password}")
     String gmailPassword;
-    @Bean
-    public  IntegrationFlow receiveInvoiceFlow(){
-        return IntegrationFlows
-                .from(Mail.imapIdleAdapter(String.format("imaps://%s:%s@imap.gmail.com/INBOX", gmailUsername, gmailPassword))
-                        .selectorExpression("subject matches '.*Invoice.*'")
-                )
-                .transform("@invoiceProcessor.extractInvoice(payload)")
-                .route("#xpath(payload, '//total <= 800', 'string')", mapping -> mapping
-                        .subFlowMapping("true", sf -> sf
-                                .handle("invoiceProcessor", "processInvoiceLesser"))
-                        .subFlowMapping("false", sf -> sf
-                                .handle("invoiceProcessor", "processInvoiceGreater"))
-                )
-                .get();
-
-    }
+//    @Bean
+//    public  IntegrationFlow receiveInvoiceFlow(){
+//        return IntegrationFlows
+//                .from(Mail.imapIdleAdapter(String.format("imaps://%s:%s@imap.gmail.com/INBOX", gmailUsername, gmailPassword))
+//                        .selectorExpression("subject matches '.*Invoice.*'")
+//                )
+//                .transform("@invoiceProcessor.extractInvoice(payload)")
+//                .route("#xpath(payload, '//total <= 800', 'string')", mapping -> mapping
+//                        .subFlowMapping("true", sf -> sf
+//                                .handle("invoiceProcessor", "processInvoiceLesser"))
+//                        .subFlowMapping("false", sf -> sf
+//                                .handle("invoiceProcessor", "processInvoiceGreater"))
+//                )
+//                .get();
+//
+//    }
 
 
 

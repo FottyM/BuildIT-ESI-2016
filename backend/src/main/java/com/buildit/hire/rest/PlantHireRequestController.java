@@ -27,28 +27,31 @@ import java.util.Optional;
 
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
-@CrossOrigin
+
 @RestController
-@RequestMapping("/api/buildit/")
+@RequestMapping("/api/buildit")
+@CrossOrigin
 public class PlantHireRequestController {
     @Autowired
     PlantHireRequestService phrService;
     @Autowired
     RentalService rentalService;
 
-    @RequestMapping(method = GET, path = "")
+    @RequestMapping(method = GET, path = "/")
     public List<PlantInventoryEntryDTO> findAvailablePlants(
             @RequestParam(name = "name", required = false) Optional<String> plantName,
             @RequestParam(name = "startDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Optional<LocalDate> startDate,
             @RequestParam(name = "endDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Optional<LocalDate> endDate) throws IOException {
+
+
         List<PlantInventoryEntryDTO> response = rentalService.findAvailablePlants(plantName, startDate, endDate);
+        //System.out.println(response);
         return response;
     }
 
-    @RequestMapping(method = POST, path = "")
+    @RequestMapping(method = POST, path = "/")
     public ResponseEntity<PlantHireRequestDTO> createPlantHireRequest(@RequestBody PlantHireRequestDTO plantHireRequestDTO) throws Exception {
         PlantHireRequestDTO response = phrService.createPlantHireRequest(plantHireRequestDTO);
-
 
         HttpHeaders headers = new HttpHeaders();
 
@@ -56,8 +59,16 @@ public class PlantHireRequestController {
 
     }
 
+    @RequestMapping(method = GET, path = "/phrs/")
+    public List<PlantHireRequestDTO> findPlantHireRequests() throws Exception {
+        List<PlantHireRequestDTO> response = phrService.getPlantHireRequests();
 
-    @RequestMapping(method = POST, path = "/phrs/{id}")
+
+
+        return response;
+
+    }
+    @RequestMapping(method = POST, path = "/phrs/{id}/accept")
     public ResponseEntity<PurchaseOrderDTO> acceptPlantHireQuestReject(@PathVariable Long id) throws PlantNotAvailableException {
         PurchaseOrderDTO phr = phrService.acceptPlantHireRequest(id, PlantHireRequestStatus.OPEN);
 

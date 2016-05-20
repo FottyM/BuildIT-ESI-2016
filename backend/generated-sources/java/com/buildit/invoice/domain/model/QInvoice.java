@@ -26,6 +26,8 @@ public class QInvoice extends EntityPathBase<Invoice> {
 
     public final StringPath poLink = createString("poLink");
 
+    public final DatePath<java.time.LocalDate> reminderReceived = createDate("reminderReceived", java.time.LocalDate.class);
+
     public final EnumPath<InvoiceStatus> status = createEnum("status", InvoiceStatus.class);
 
     public final NumberPath<java.math.BigDecimal> total = createNumber("total", java.math.BigDecimal.class);

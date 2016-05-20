@@ -12,4 +12,5 @@ public interface CustomPlantHireRequestRepository {
 
    PlantHireRequest getPlantHireRequestByPoUrlAndPrice(String poUrl, BigDecimal price);
    public List<PlantHireRequest> getListOfPos();
+   public List<PlantHireRequest>getPlantHireRequests();
 }

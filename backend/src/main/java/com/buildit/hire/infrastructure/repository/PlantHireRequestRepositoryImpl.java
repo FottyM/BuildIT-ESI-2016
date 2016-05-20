@@ -38,4 +38,9 @@ public class PlantHireRequestRepositoryImpl implements CustomPlantHireRequestRep
     public List<PlantHireRequest> getListOfPos() {
         return new JPAQuery(em).from(qPlantHireRequest).where(qPlantHireRequest.status.eq(PlantHireRequestStatus.OPEN)).list(qPlantHireRequest);
     }
+
+    @Override
+    public List<PlantHireRequest> getPlantHireRequests() {
+        return new JPAQuery(em).from(qPlantHireRequest).where(qPlantHireRequest.status.eq(PlantHireRequestStatus.PENDING)).list(qPlantHireRequest);
+    }
 }
