@@ -9,7 +9,8 @@ import {Plant} from '../declarations';
 export class SelectionComponent {
   @Output() selectPlantEvent : EventEmitter<Plant> = new EventEmitter();
   constructor(public catalog: PlantCatalogService) {}
-  selectPlant(plant: Plant) {
-    this.selectPlantEvent.emit(plant);
+  selectPlant(plant:Plant,x) {
+    plant.url=x;
+      this.selectPlantEvent.emit(plant);
   }
 }

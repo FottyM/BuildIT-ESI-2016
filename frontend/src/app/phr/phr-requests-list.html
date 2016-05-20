@@ -2,6 +2,8 @@
     <thead>
         <tr>
             <th class="text-center">Plant</th>
+            <th class="text-center">Status</th>
+            <th class="text-center">Supplier</th>
             <th class="text-center">Start date</th>
             <th class="text-center">End date</th>
             <th class="text-center">Total</th>
@@ -9,24 +11,20 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="#order of orders" id="{{order._xlinks[0].href.split('/')[5]}}">
+        <tr *ngFor="#request of plantRequests" >
+            <td>{{request.plantDetails.name}}</td>
             <td>
-                {{order.plant.name}}
-                <button>
-                Inspect plant
-                </button>
+                {{request.status}}
+
             </td>
-            <td>{{order.rentalPeriod.startDate}}</td>
-            <td>{{order.rentalPeriod.endDate}}</td>
-            <td class='text-right'>{{order.total | number:'.2'}}</td>
-            <td class='text-center'>
-                <button class="btn btn-xs" *ngFor="#link of order._xlinks" 
-                    [ngClass]="{'btn-success':link.method=='POST', 
-                                'btn-danger':link.method=='DELETE'}"
-                    (click)="follow(link)">
-                {{link._rel}}
-                </button>
-            </td>
+            <td>{{request.supplier}}</td>
+            <td>{{request.rentalPeriod.startDate}}</td>
+            <td>{{request.rentalPeriod.endDate}}</td>
+            <td class='text-right'>{{request.price | number:'.2'}}</td>
+
+            <td>     <button type="submit" class="btn btn-success" (click)="response(request._id,true)" >Create PHR</button>
+                <button type="submit" class="btn btn-danger" (click)="response(request._id,false)" >Create PHR</button>
+             </td>
         </tr>
     </tbody>
 </table>

@@ -79,7 +79,7 @@ public class PlantHireRequestController {
         }
         return new ResponseEntity<PurchaseOrderDTO>(phr, headers, HttpStatus.CREATED);
     }
-
+   // // TODO: 5/20/2016  check y reject and accept fails wen the request is sent
     @RequestMapping(method = POST, path = "/phrs/{id}/reject")
     public ResponseEntity<PlantHireRequestDTO> rejectPlantHireQuestReject(@PathVariable Long id, @RequestBody PlantHireRequestDTO plantHireRequestDTO) throws PlantNotAvailableException {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();

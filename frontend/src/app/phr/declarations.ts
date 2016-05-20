@@ -3,6 +3,7 @@ export class Plant {
     name: string;
     description: string;
     price: number;
+    url:string;
 }
 
 export class Query {

@@ -8,6 +8,9 @@ import {OverviewComponent} from './overview/overview.component';
 
 import {PlantCatalogService} from './catalog.service';
 import {ProcurementService} from './procurement.service';
+import {AuthenticationService} from "../login/auth.services";
+import {OnActivate, ComponentInstruction, Router} from "angular2/router";
+import {RequestOptions} from "angular2/http";
 
 @Component({
     directives: [QueryComponent, SelectionComponent, OverviewComponent],
@@ -34,15 +37,25 @@ import {ProcurementService} from './procurement.service';
         }
   `]
 })
-export class PHRWizardComponent {
+export class PHRWizardComponent  implements OnActivate {
     plant: Plant = new Plant();
     query: Query = new Query();
     
     isQueryTabActive = true;
     isSelectionTabActive = false;
     isReviewTabActive = false;
-    
-    constructor(public catalog: PlantCatalogService, public procurementService: ProcurementService) {
+    options= null;
+    constructor(private router: Router,public catalog: PlantCatalogService, public procurementService: ProcurementService, private authenticationService: AuthenticationService) {
+    }
+
+    routerOnActivate(next: ComponentInstruction, prev: ComponentInstruction) {
+        if (this.authenticationService.checkRoles(['WORK_ENGINEER'])) {
+            var options = new RequestOptions({ headers: this.authenticationService.headers()});
+               this.options=options;
+            return true;
+        }
+        this.router.navigate(['Login']);
+        return false;
     }
     executeQuery(query:Query) {
         this.query = query;
@@ -52,6 +65,7 @@ export class PHRWizardComponent {
     }
     selectPlant(plant:Plant) {
         this.plant = plant;
+        console.log(plant)
         this.procurementService.setPlant(plant,this.query);
         this.isSelectionTabActive = false;
         this.isReviewTabActive = true;
