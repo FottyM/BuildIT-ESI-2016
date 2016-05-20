@@ -1,20 +1,31 @@
 import {Injectable} from 'angular2/core';
-import {Http} from 'angular2/http';
+import {Http, RequestOptions} from 'angular2/http';
 import {Observable} from 'rxjs/Rx';
+
 
 import {Plant, Query} from './declarations';
 import {XLink} from "../orders/purchase-order-listing.component";
 import {buildItPort} from '../Configuration'
+import {AuthenticationService} from '../login/auth.services'
 
 @Injectable()
 export class PlantCatalogService {
     plants: Plant[] = [];
     extension= "";
-    constructor(public http: Http) {}
-    
+    constructor(public http: Http,private auth:AuthenticationService) {}
+
+
+
+
     executeQuery(query: Query) {
-        this.http.get("http://localhost:8080/api/sales/?name="+query.name+"&startDate="+query.startDate+"&endDate="+query.endDate)
-            .subscribe(response => this.plants = response.json());
+
+
+        this.http.get(buildItPort+"/api/buildit/?name="+query.name+"&startDate="+query.startDate+"&endDate="+query.endDate,this.auth.optionsValue())
+            .subscribe(response => {this.plants = response.json();
+           // console.log(response.json())
+
+            },null);
+
     }
 
 

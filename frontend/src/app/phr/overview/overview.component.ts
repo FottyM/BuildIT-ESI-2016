@@ -9,15 +9,13 @@ import {ProcurementService} from "../procurement.service";
 })
 export class OverviewComponent {
     @Input() phr: PlantHireRequest;
-    constructor(public procumentService:ProcurementService) {}
+    constructor(public procumentService:ProcurementService) {
+
+   
+    }
     createPHR() {
 
-        // $.post( "http://127.0.0.1:3000/api/phrs/", function( data ) {
-        //     var x = JSON.parse(JSON.stringify(data));
-        //     window.location = x["url"];
-        // });
-
-     this.procumentService.executePlantHireRequest()
+         this.procumentService.executePlantHireRequest()
        
 
        

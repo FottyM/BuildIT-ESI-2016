@@ -1,22 +1,25 @@
 import {Injectable} from 'angular2/core';
-import {Http} from 'angular2/http';
+import {Http, RequestOptions} from 'angular2/http';
 
 import moment from 'moment';
 import {buildItPort} from '../Configuration'
 
 import {Plant, Query, PlantHireRequest, RentalPeriod} from './declarations';
 import {XLink} from "../orders/purchase-order-listing.component";
+import {AuthenticationService} from "../login/auth.services";
+import {Router} from "angular2/router";
 
 @Injectable()
 export class ProcurementService {
     phr: PlantHireRequest = new PlantHireRequest();
-    constructor(public http: Http) {
+    constructor(public http: Http,private auth:AuthenticationService,private router: Router) {
     }
     setPlant(plant: Plant, query: Query) {
         this.phr.plant = plant;
         this.phr.rentalPeriod = new RentalPeriod();
         this.phr.rentalPeriod.startDate = query.startDate;
         this.phr.rentalPeriod.endDate = query.endDate;
+
         this.phr.total = (moment(query.endDate).diff(moment(query.startDate), 'days') + 1) * plant.price;
     }
 
@@ -56,24 +59,44 @@ export class ProcurementService {
     }
 
     executePlantHireRequest(){
-      
-      this.http.post(buildItPort+"/api/phrs/",JSON.stringify({plant:this.phr.plant,rentalPeriod:this.phr.rentalPeriod}))
+
+      this.http.post(buildItPort+"/api/buildit/",JSON.stringify({plantUrl:this.phr.plant.url,rentalPeriod:this.phr.rentalPeriod}),this.auth.optionsValueJson())
             .subscribe(response => {
+
+                    console.log(response);
 
                     if(response.status==201)
                     {
                     
-                       // window.location ="/phrs";
+                       
+                        this.router.navigate(['PHRListing']);
                        
                     }
                 else {
-
+                        alert("Sorry something went wrong")
                     }
 
 
                 },
                 error => {
                     alert("Sorry something went wrong")
+
+                });
+
+    }
+    executePhr(id,accept:boolean){
+       var bb = "reject"
+        if(accept){
+         bb= "accept";
+        }
+
+        this.http.post(buildItPort+"/api/buildit/phrs/"+id+"/"+bb,null,this.auth.optionsValue())
+            .subscribe(response => {
+                    this.returnedStatus =  "accepted"
+
+                },
+                error => {
+                    alert("error");
 
                 });
 
