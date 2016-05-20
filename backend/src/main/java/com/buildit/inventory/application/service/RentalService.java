@@ -52,7 +52,7 @@ public class RentalService {
             if (e.getStatusCode().equals(HttpStatus.CONFLICT)){
 
                 PurchaseOrderDTO purchaseOrderDTO  = order;
-                order.setStatus(POStatus.REJECTED);
+               // order.setStatus(POStatus.REJECTED);
                  return purchaseOrderDTO;
 
 
@@ -92,4 +92,15 @@ public class RentalService {
         return null;
     }
 
+    public PlantInventoryEntryDTO findPlantDetails(Long id) {
+        System.out.println(id);
+          if (id!=null){
+        PlantInventoryEntryDTO plantInventoryEntryDTO = restTemplate.getForObject("http://" + host + ":" + port + "/api/inventory/plants/{id}",
+                PlantInventoryEntryDTO.class,id);
+        return plantInventoryEntryDTO;
+          }
+        else {
+              return new PlantInventoryEntryDTO();
+          }
+    }
 }

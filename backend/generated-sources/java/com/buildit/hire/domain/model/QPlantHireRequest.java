@@ -22,6 +22,8 @@ public class QPlantHireRequest extends EntityPathBase<PlantHireRequest> {
 
     public static final QPlantHireRequest plantHireRequest = new QPlantHireRequest("plantHireRequest");
 
+    public final StringPath comment = createString("comment");
+
     public final NumberPath<Long> constructionSiteId = createNumber("constructionSiteId", Long.class);
 
     public final QPlantHireRequestID id;

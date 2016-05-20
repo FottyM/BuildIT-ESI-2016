@@ -45,6 +45,15 @@ public class PlantHireRequestService {
 
 
     public PlantHireRequestDTO createPlantHireRequest(PlantHireRequestDTO plantHireRequestDTO) {
+
+        if(plantHireRequestDTO.getPlantUrl()!=null){
+            Pattern p = Pattern.compile(".*s\\/ *(.*)");
+            Matcher m = p.matcher(plantHireRequestDTO.getPlantUrl());
+            m.find();
+            plantHireRequestDTO.setPlantId(Long.parseLong(m.group(1)));
+        }
+
+
         PlantHireRequest phr = PlantHireRequest.of(
                 identifierGenerator.nextPlantHireRequestID(),
                 plantHireRequestDTO.getPlantId(),
@@ -61,6 +70,29 @@ public class PlantHireRequestService {
         return plantHireRequestAssembler.toResource(plantHireRequestRepository.findOne(phrid));
     }
 
+
+
+    public  List<PlantHireRequestDTO> getPlantHireRequests() {
+        List<PlantHireRequestDTO>   plantHireRequestDTOs = new ArrayList<PlantHireRequestDTO>();
+
+        for (PlantHireRequest  plantHireRequest:plantHireRequestRepository.getPlantHireRequests() ) {
+            System.out.println(plantHireRequest.getPlantId());
+            PlantHireRequestDTO  plantHireRequestDTO =new PlantHireRequestDTO();
+            plantHireRequestDTO.setPlantDetails(rentalService.findPlantDetails(plantHireRequest.getPlantId()));
+            plantHireRequestDTO.setPrice(plantHireRequest.getPrice());
+            plantHireRequestDTO.setSupplier(plantHireRequest.getSupplier());
+            plantHireRequestDTO.setStatus(plantHireRequest.getStatus());
+            BusinessPeriodDTO businessPeriodDTO = new BusinessPeriodDTO();
+            businessPeriodDTO.setStartDate(plantHireRequest.getRentalPeriod().getStartDate());
+            businessPeriodDTO.setEndDate(plantHireRequest.getRentalPeriod().getEndDate());
+            plantHireRequestDTO.setRentalPeriod(businessPeriodDTO);
+            plantHireRequestDTO.set_id(plantHireRequest.getId().getId());
+
+         plantHireRequestDTOs.add(plantHireRequestDTO);
+        }
+
+        return plantHireRequestDTOs;
+    }
     public PlantHireRequest _findPlantHireRequest(PlantHireRequestID phrid) {
         return plantHireRequestRepository.findOne(phrid);
     }

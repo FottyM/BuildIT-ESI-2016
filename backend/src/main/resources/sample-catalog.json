@@ -23,6 +23,7 @@
   {
     "_class": "com.buildit.hire.domain.model.PlantHireRequest",
     "id": 1,
+    "plantId":2,
     "constructionSiteId": 0,
     "price": 150,
     "rentalPeriod": {
@@ -37,6 +38,7 @@
   {
     "_class": "com.buildit.hire.domain.model.PlantHireRequest",
     "id": 2,
+    "plantId":2,
     "constructionSiteId": 0,
     "price": 150,
     "rentalPeriod": {
@@ -51,6 +53,7 @@
   {
     "_class": "com.buildit.hire.domain.model.PlantHireRequest",
     "id": 3,
+
     "constructionSiteId": 0,
     "price": 150,
     "rentalPeriod": {
