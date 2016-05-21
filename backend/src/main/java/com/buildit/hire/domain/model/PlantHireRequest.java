@@ -17,6 +17,7 @@ public class PlantHireRequest {
     Long constructionSiteId;
     String supplier;
     Long plantId;
+    String plantUrl;
     @Column(precision = 8, scale = 2)
     BigDecimal price;
     @Embedded
@@ -27,7 +28,7 @@ public class PlantHireRequest {
     String poUrl;
     String comment;
 
-    public static PlantHireRequest of(PlantHireRequestID id, Long plantId, BusinessPeriodDTO rentalPeriod, BigDecimal price) {
+    public static PlantHireRequest of(PlantHireRequestID id, Long plantId, BusinessPeriodDTO rentalPeriod, BigDecimal price,String plantUrl) {
         BusinessPeriod bp = BusinessPeriod.of(rentalPeriod.getStartDate(),rentalPeriod.getEndDate());
 
         PlantHireRequest phr = new PlantHireRequest();
@@ -37,6 +38,7 @@ public class PlantHireRequest {
         phr.price = price;
         phr.status = PlantHireRequestStatus.PENDING;
         phr.isPaid = false;
+        phr.plantUrl=plantUrl;
         return phr;
     }
 

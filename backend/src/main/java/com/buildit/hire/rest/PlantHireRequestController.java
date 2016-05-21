@@ -81,7 +81,9 @@ public class PlantHireRequestController {
     }
    // // TODO: 5/20/2016  check y reject and accept fails wen the request is sent
     @RequestMapping(method = POST, path = "/phrs/{id}/reject")
-    public ResponseEntity<PlantHireRequestDTO> rejectPlantHireQuestReject(@PathVariable Long id, @RequestBody PlantHireRequestDTO plantHireRequestDTO) throws PlantNotAvailableException {
+    public ResponseEntity<PlantHireRequestDTO> rejectPlantHireQuestReject(@PathVariable Long id, @RequestBody (required = false) PlantHireRequestDTO plantHireRequestDTO) throws PlantNotAvailableException {
+        System.out.println(plantHireRequestDTO);
+
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         List<String> roles = new LinkedList<String>();
 

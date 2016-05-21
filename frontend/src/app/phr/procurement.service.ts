@@ -60,15 +60,15 @@ export class ProcurementService {
 
     executePlantHireRequest(){
 
-      this.http.post(buildItPort+"/api/buildit/",JSON.stringify({plantUrl:this.phr.plant.url,rentalPeriod:this.phr.rentalPeriod}),this.auth.optionsValueJson())
+      this.http.post(buildItPort+"/api/buildit/",JSON.stringify({plantUrl:this.phr.plant.url,price:this.phr.plant.price,rentalPeriod:this.phr.rentalPeriod}),this.auth.optionsValueJson())
             .subscribe(response => {
 
-                    console.log(response);
+
 
                     if(response.status==201)
                     {
-                    
-                       
+
+
                         this.router.navigate(['PHRListing']);
                        
                     }
@@ -92,8 +92,17 @@ export class ProcurementService {
 
         this.http.post(buildItPort+"/api/buildit/phrs/"+id+"/"+bb,null,this.auth.optionsValue())
             .subscribe(response => {
-                    this.returnedStatus =  "accepted"
 
+                    if(response.status==201)
+                    {
+
+
+                        this.router.navigate(['POListing']);
+
+                    }
+                    else {
+                        alert("Sorry something went wrong")
+                    }
                 },
                 error => {
                     alert("error");

@@ -43,6 +43,8 @@ public class RentalService {
     String port;
 
     public PurchaseOrderDTO createPurchaseOrder(PurchaseOrderDTO order) throws PlantNotAvailableException {
+
+        System.out.println(order);
         try {
             ResponseEntity<PurchaseOrderDTO> result = restTemplate.postForEntity(
                     "http://" + host + ":" + port + "/api/sales/orders", order, PurchaseOrderDTO.class);
@@ -95,8 +97,16 @@ public class RentalService {
     public PlantInventoryEntryDTO findPlantDetails(Long id) {
         System.out.println(id);
           if (id!=null){
+
+
         PlantInventoryEntryDTO plantInventoryEntryDTO = restTemplate.getForObject("http://" + host + ":" + port + "/api/inventory/plants/{id}",
                 PlantInventoryEntryDTO.class,id);
+
+
+
+
+
+
         return plantInventoryEntryDTO;
           }
         else {
