@@ -71,6 +71,6 @@ export class PHRWizardComponent  implements OnActivate {
         this.isReviewTabActive = true;
     }
     backToQueryTab(){
-        window.location='/wizard';
+        this.router.navigate(['PHRWizard']);
     }
 }

@@ -58,7 +58,7 @@ public class PlantHireRequestService {
                 identifierGenerator.nextPlantHireRequestID(),
                 plantHireRequestDTO.getPlantId(),
                 plantHireRequestDTO.getRentalPeriod(),
-                plantHireRequestDTO.getPrice()
+                plantHireRequestDTO.getPrice(),plantHireRequestDTO.getPlantUrl()
         );
 
         plantHireRequestRepository.save(phr);
@@ -136,20 +136,35 @@ public class PlantHireRequestService {
 
         PlantHireRequestDTO pp = new PlantHireRequestAssembler().toResource(plantHireRequestRepository.save(acceptedPhr));
 
-        if (status == PlantHireRequestStatus.REJECTED) {
-            return null;
-        }
 
         PlantInventoryEntryDTO plant = new PlantInventoryEntryDTO();
-        plant.add(new Link("http://rentit.com/api/inventory/plants/13"));
+
+
+
+
+
+        Link link =  new Link(pp.getPlantUrl());
+
+
+        List<Link> links = new ArrayList<Link>();
+         links.add(link);
+
+//
+       //plant.set_links(links);
+
+        plant.add(new Link(pp.getPlantUrl()));
 
         PurchaseOrderDTO order = new PurchaseOrderDTO();
         order.setPlant(plant);
         order.setRentalPeriod(pp.getRentalPeriod());
+        order.setEmail("agabaisaacsoftwares@gmail.com");
+         order = rentalService.createPurchaseOrder(order);
+
+         acceptedPhr.setPoUrl(order.getLinks().get(0).getHref().toString());
+          plantHireRequestRepository.save(acceptedPhr);
 
 
-        return rentalService.createPurchaseOrder(order); //Needs at least mock
-        //return new PurchaseOrderDTO();
+        return  order;
     }
 
     public void save(PlantHireRequest phr) {
