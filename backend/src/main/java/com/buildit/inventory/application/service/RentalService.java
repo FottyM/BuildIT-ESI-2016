@@ -11,6 +11,7 @@ import java.time.LocalDate;
 
 import com.buildit.orders.application.dto.PurchaseOrderDTO;
 import com.buildit.orders.domain.model.POStatus;
+import com.sun.jndi.toolkit.url.Uri;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -63,6 +64,21 @@ public class RentalService {
         return null;
     }
 
+    public Boolean cancelPurchaseOrder(String cancelUrl) throws PlantNotAvailableException {
+
+        System.out.println(cancelUrl);
+        try {
+            Map<String, String> params = new HashMap<String, String>();
+            restTemplate.delete(cancelUrl,params); ;
+
+            return true;
+        } catch (final HttpClientErrorException e) {
+            if (e.getStatusCode().equals(HttpStatus.CONFLICT)){
+                return false;
+            }
+        }
+        return null;
+    }
 
     public List<PlantInventoryEntryDTO> findAvailablePlants(Optional<String> plantName, @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Optional<LocalDate> startDate, @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Optional<LocalDate> endDate) {
         PlantInventoryEntryDTO[] plants = restTemplate.getForObject(

@@ -1,0 +1,500 @@
+   13  ls
+   14  convert 1.jpg -threshold 75% 1_b.jpg
+   15  convert 1.jpg -threshold 55% 1_b.jpg
+   16  convert 1.jpg -threshold 45% 1_b.jpg
+   17  convert 1.jpg -threshold 35% 1_b.jpg
+   18  sudo apt-get upgrade
+   19  sudo apt-get update
+   20  sudo apt-get upgrade
+   21  df -h
+   22  ./instal-open-eid.sh
+   23  ./install-open-eid.sh
+   24  cd spring_workspace/homework7/
+   25  git checkout -b rain
+   26  git add .
+   27  git commit -m "Worked on auto-pay invoice and receiving invoice"
+   28  git push origin rain
+   29  ping oksvort.yks
+   30  ping oksvort.yks
+   31  ssh user@oksvort.yks
+   32  ssh user@10.10.10.70
+   33  exit
+   34  ping 10.10.10.70
+   35  ping host5.teacher.yks
+   36  ping teacher.yks
+   37  ping oksvort.yks
+   38  ssh oksvort.yks
+   39  ssh user@oksvort.yks
+   40  sudo iwlist wlo1 scan
+   41  sudo iwlist wlo1 scan
+   42  sudo iwlist wlo1 scan
+   43  cd spring_workspace/homework7/
+   44  git add .
+   45  git commit -m "finished my part of work which was to accept invoices via email and REST API and to create GUI for that"
+   46  git push origin rain
+   47  git add .
+   48  git commit -m "Correcter typo in done.html"
+   49  git push origin rain
+   50  cd spring_workspace/demo12/
+   51  mvm package -Dskiptests
+   52  mvm package -Dskiptest
+   53  mvm package -skiptest
+   54  mvm package -skiptests
+   55  mvn package -Dskiptests
+   56  sudo apt-get install maven
+   57  mvn package -Dskiptests
+   58  exit
+   59  cd spring_workspace/demo12
+   60  cd frontend/
+   61  ls
+   62  npm install
+   63  npm install
+   64  exit
+   65  docker run -it --im -p 61616:61616 -p 8161:8161 ivankrizsan/activemq-docker
+   66  docker run -it --rm -p 61616:61616 -p 8161:8161 ivankrizsan/activemq-docker
+   67  exit
+   68  cd spring_workspace/homework7/
+   69  cd ..
+   70  git clone https://rain_ut@bitbucket.org/lgbanuelos/esi2014-exam2.git
+   71  find a
+   72  find a a
+   73  find a a b
+   74  ./test.sh
+   75  ./test.sh
+   76  ./test.sh
+   77  ./test.sh
+   78  ./test.sh
+   79  ./test.sh
+   80  ./test.sh
+   81  echo a b
+   82  echo "a b"
+   83  ´echo "a b"´
+   84  ./test.sh
+   85  ./test.sh
+   86  muon
+   87  rats
+   88  sudo apt-get install rats
+   89  cd rats
+   90  ./configure
+   91  make
+   92  make install
+   93  sudo apt-get install rats
+   94  sudo muon
+   95  cd expat/
+   96  /configure --prefix=/usr && make
+   97  sudo make install && sudo install -v -m755 -d /usr/share/doc/expat-2.0.1 && sudo install -v -m644 doc/*.{html,png,css} /usr/share/doc/expat-2.0.1
+   98  ./configure --prefix=/usr && make
+   99  sudo make install && sudo install -v -m755 -d /usr/share/doc/expat-2.0.1 && sudo install -v -m644 doc/*.{html,png,css} /usr/share/doc/expat-2.0.1
+  100  cd ..
+  101  ./configure
+  102  make
+  103  make install
+  104  sudo make install
+  105  rats
+  106  cd ..
+  107  rat
+  108  rats
+  109  rats test.c
+  110  sudo iwlist wlo1 scan
+  111  sudo iwlist wlo1 scan
+  112  sudo iwlist wlo1 scan
+  113  sudo iwlist wlo1 scan
+  114  sudo iwlist wlo1 scan
+  115  sudo service network-manager restart
+  116  foremost
+  117  sudo apt-get install foremost
+  118  df -h
+  119  sudo foremost -i /dev/sda -o "/media/rain/Seagate Expansion Drive/restore"
+  120  df -h
+  121  sudo foremost -i /dev/sda5 -o "/media/rain/Seagate Expansion Drive/restore"
+  122  /.thumbnails/fail
+  123  rm -fr /.thumbnails/fail
+  124  sudo rm -rf ~/.thumbnails/* ~/.cache/thumbnails/*
+  125  rm -rf ~/.thumbnails/* ~/.cache/thumbnails/*
+  126  cd /media/data/Dropbox/datamining/projekt/
+  127  python reader.py
+  128  python reader.py
+  129  python reader.py
+  130  python
+  131  python
+  132  python reader.py
+  133  python reader.py
+  134  python reader.py
+  135  python reader.py
+  136  python reader.py
+  137  python reader.py
+  138  python reader.py
+  139  python reader.py
+  140  python reader.py
+  141  clear
+  142  python reader.py
+  143  clear
+  144  python reader.py
+  145  python reader.py
+  146  python reader.py
+  147  python reader.py
+  148  clear
+  149  python reader.py
+  150  python reader.py
+  151  python reader.py
+  152  python reader.py
+  153  python reader.py
+  154  python reader.py
+  155  python reader.py
+  156  python reader.py
+  157  python reader.py
+  158  python
+  159  python reader.py
+  160  python reader.py
+  161  python reader.py
+  162  python reader.py
+  163  python reader.py
+  164  python reader.py
+  165  python reader.py
+  166  python reader.py
+  167  python
+  168  python
+  169  python reader.py
+  170  python reader.py
+  171  python reader.py
+  172  python reader.py
+  173  python reader.py
+  174  sudo apt-get install viewnior
+  175  sudo foremost -i /dev/sda5 -o "/media/rain/Seagate Expansion Drive/restore"
+  176  df -h
+  177  sudo foremost -i /dev/mmcblk0p1 -o "/media/rain/Seagate Expansion Drive/restore"
+  178  ls
+  179  df -h
+  180  df -h
+  181  sudo gedit /etc/hosts
+  182  df -h
+  183  df -h
+  184  apt-get update
+  185  ssh user@oksvort.yks
+  186  ssh user@oksvort.yks
+  187  ssh user@oksvort.yks
+  188  exit
+  189  sudo apt-get istall ssh
+  190  sudo apt-get install filezilla
+  191  cd spring_workspace/
+  192  git clone https://rain_ut@bitbucket.org/esi_2016/rentit.git
+  193  git clone https://rain_ut@bitbucket.org/esi_2016/buildit.git
+  194  ssh user@oksvort.yks
+  195  ssh user@oksvort.yks
+  196  ssh user@oksvort.yks
+  197  ifcifig
+  198  ifcofig
+  199  ifconfig
+  200  ssh user@oksvort.yks
+  201  ssh user@oksvort.yks
+  202  ssh user@oksvort.yks
+  203  ssh user@10.10.10.70
+  204  ping 10.10.10.5
+  205  ping 10.10.10.70
+  206  ping oksvort.yks
+  207  ping oksvort.yks
+  208  ssh user@oksvort.yks
+  209  ssh user@oksvort.yks
+  210  exit
+  211  ifconfig
+  212  ifconfig
+  213  sudo apt-get install arandr
+  214  arandr
+  215  ifconfig
+  216  sudo apt-get install opera
+  217  ip addr
+  218  ssh user@oksvort.yks
+  219  sudo apt-get update
+  220  sudo apt-get upgrade
+  221  ssh user@oksvort.yks
+  222  ssh user@oksvort.yks
+  223  ssh user@oksvort.yks
+  224  ssh mailuser@oksvort.yks
+  225  ssh mailuser@oksvort.yks
+  226  cd spring_workspace/
+  227  ls
+  228  cd rentit
+  229  ls
+  230  git pull
+  231  cd ..
+  232  cd buildit/
+  233  git pull
+  234  cd spring_workspace/
+  235  cd buildit/
+  236  git fetch && git checkout rain 
+  237  git add .
+  238  git commit -m "added comment field for PHR"
+  239  git push origin rain
+  240  df -h
+  241  df -h[B
+  242  ifconfig
+  243  sudo apt-get install gufu
+  244  sudo apt-get install gufw
+  245  ufw
+  246  gufw
+  247  firewall-config
+  248  sudo apt-get install firewall-config
+  249  firewall-config
+  250  nano /etc/firewall.conf
+  251  ufw
+  252  gufw
+  253  cd spring_workspace/buildit/
+  254  git add .
+  255  git commit -m "Added edit for phr; Added invoice reminder support; Fixed reject and accept;"
+  256  git push origin rain
+  257  df -h
+  258  sudo apt-get install r-cran-rgl
+  259  ssh mailuser@oksvort.yks
+  260  ssh user@oksvort.yks
+  261  ssh oksvort@ut.ee
+  262  ssh oksvort@math.ut.ee
+  263  make
+  264  make
+  265  make
+  266  make
+  267  sudo iwlist wlo1 scan
+  268  sudo iwlist wlo1 scan
+  269  sudo iwlist wlo1 scan
+  270  sudo iwlist wlo1 scan
+  271  sudo iwlist wlo1 scan
+  272  sudo iwlist wlo1 scan
+  273  ssh user@10.0.2.15
+  274  ping 10.0.2.15
+  275  ifconfig
+  276  ssh user@localhost:2222
+  277  ssh user@127.0.0.1:2222
+  278  ssh user@127.0.0.1
+  279  ssh -p 2222 user@127.0.0.1
+  280  ssh -p 2222 user@127.0.0.1
+  281  ls
+  282  make
+  283  ~ls -l
+  284  ls
+  285  less Makefile 
+  286  less Makefile 
+  287  ls -l /home/rain/cppproject
+  288  less /home/rain/cppproject/GNUmakefile
+  289  ls -1 /home/rain/cppproject/ | grep Makefile 
+  290  ls -1 /home/rain/cppproject/ | grep akefile 
+  291  cd ..
+  292  cd cppproject/
+  293  make -f GNUmakefile-cross 
+  294  cd cpp
+  295  cd ..
+  296  cd cpp
+  297  make
+  298  docker --version
+  299  docker-compose --version
+  300  sudo apt install docker-compose
+  301  docker-compose --version
+  302  sudo gedit /etc/apt/sources.list.d/docker.list 
+  303  sudo apt-get update
+  304  sudo apt-get purge lxc-docker
+  305  sudo apt-get purge lxc-docker
+  306  apt-get update
+  307  sudo apt-get update
+  308  sudo apt-get install linux-image-extra-$(uname -r)
+  309  docker-compose --version
+  310  curl -L https://github.com/docker/compose/releases/download/1.7.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+  311  sudo curl -L https://github.com/docker/compose/releases/download/1.7.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+  312  sudo curl -L https://github.com/docker/compose/releases/download/1.7.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+  313  sudo apt-get remove docker-composer 
+  314  sudo apt-get remove docker-compos
+  315  sudo mc
+  316  wget https://github.com/docker/compose/releases/download/1.7.0/docker-compose-`uname -s`-`uname -m` -O /usr/local/bin/docker-compose
+  317  sudo wget https://github.com/docker/compose/releases/download/1.7.0/docker-compose-`uname -s`-`uname -m` -O /usr/local/bin/docker-compose
+  318  sudo chmod +x /usr/local/bin/docker-compose
+  319  docker-compose
+  320  docker-compose -v
+  321  /usr/local/bin/docker-compose -v
+  322  /usr/local/bin/docker-compose
+  323  which docker-compose
+  324  /usr/local/bin/docker-compose
+  325  /usr/local/bin/docker-compose -v
+  326  /usr/local/bin/docker-compose
+  327  /usr/local/bin/docker-compose -v
+  328  docker-compose
+  329  docker-compose -v
+  330  wget https://github.com/docker/compose/releases/download/1.7.2/docker-compose-`uname -s`-`uname -m` -O /usr/local/bin/docker-compose
+  331  sudo wget https://github.com/docker/compose/releases/download/1.7.2/docker-compose-`uname -s`-`uname -m` -O /usr/local/bin/docker-compose
+  332  sudo wget https://github.com/docker/compose/releases/download/1.7.0/docker-compose-`uname -s`-`uname -m` -O /usr/local/bin/docker-compose
+  333  docker-compose -v
+  334  ping oksvort.eu
+  335  ping ut.ee
+  336  ping math.ut.ee
+  337  ping oksvort.eu
+  338  ssh user@oksvort.yks
+  339  ping neti.ee
+  340  xs spring_workspace/buildit/
+  341  cd spring_workspace/buildit/
+  342  git add .
+  343  git commit -m "added authentication"
+  344  git push origin rain
+  345  ssh -p 2222 user@127.0.0.1
+  346  ssh -p 2222 user@127.0.0.1
+  347  nano /etc/interfaces
+  348  sudo nano /etc/interfaces
+  349  ssh user@oksvort.yks
+  350  ssh -p 2222 root@127.0.0.1
+  351   ssh-keygen -f "/home/rain/.ssh/known_hosts" -R [127.0.0.1]:2222
+  352  ssh -p 2222 root@127.0.0.1
+  353  ssh -p 2222 root@127.0.0.1
+  354  ssh -p 2222 root@127.0.0.1
+  355  ssh -p 2222 root@127.0.0.1
+  356  ssh -v -p 2222 root@127.0.0.1
+  357  ssh -p 2222 root@127.0.0.1
+  358   ssh-keygen -f "/home/rain/.ssh/known_hosts" -R [127.0.0.1]:2222
+  359  ssh -p 2222 root@127.0.0.1
+  360  ssh -p 2222 root@127.0.0.1
+  361  exit
+  362  ping neti.ee
+  363  sudo nano /etc/resolv.conf
+  364  df -h
+  365  ping neti.ee
+  366  nmap -sP -PR 192.168.0.*
+  367  sudo apt install nmap
+  368  nmap -sP -PR 192.168.0.*
+  369  ifconfig
+  370  nmap -sP -PR 192.168.10.*
+  371  sudo nano /etc/resolv.conf 
+  372  nmap -sP -PR 192.168.10.*
+  373  nmap -sP -PR 192.168.10.0/24
+  374  nmap -sP 192.168.10.0/24
+  375  ping neti.ee
+  376  nmap -sP 192.168.10.0/24
+  377  ssh user@oksvort.yks
+  378  exit
+  379  ssh user@oksvort.yks
+  380  sudo gedit /etc/hosts
+  381  ping www.oksvort.upz
+  382  ping oksvort.upz
+  383  ping webmail.oksvort.upz
+  384  nslookup google.com
+  385  exit
+  386  ifconfig
+  387  ssh root@192.168.10.70
+  388  ssh root@192.168.10.70
+  389  ssh root@192.168.10.70
+  390  df -h
+  391  ping ee
+  392  dig @8.8.8.8 .ee
+  393  dig @8.8.8.8 ee
+  394  df -h
+  395  df -h
+  396  df -h
+  397  sudo apt-get install gnome-system-tools
+  398  gnome-system-tools
+  399  sudo useradd -G vboxusers rain
+  400  sudo usermod -a -G vboxusers rain
+  401  sudo restart lightdm
+  402  sudo restart lightdm
+  403  df
+  404  df -h
+  405  sudo apt-get install unetbootin
+  406  unetbootin
+  407  yumi
+  408  sudo apt-get install gambas3
+  409  gambas3
+  410  cd share/
+  411  sudo dpkg -i yumi_0.0.1-1_all.deb 
+  412  gambas3
+  413  sudo apt-get purge gambas3
+  414  sudo apt-get install p7zip-full
+  415  p7zip-full
+  416  sudo apt-get autoremove
+  417  sudo apt-get install p7zip-full
+  418  sudo apt-get install mkusb
+  419  sudo apt-get install usb-creator-kde
+  420  usb-creator-kde
+  421  usb-creator-kde
+  422  usb-creator-kde
+  423  make
+  424  make
+  425  make
+  426  make
+  427  make
+  428  clear
+  429  make
+  430  make
+  431  clear
+  432  make
+  433  make
+  434  make
+  435  make
+  436  clear
+  437  make
+  438  clear && make
+  439  clear && make
+  440  clear && make
+  441  clear
+  442  make
+  443  clear
+  444  make
+  445  make
+  446  clear
+  447  make
+  448  clear
+  449  make
+  450  make
+  451  clear
+  452  make
+  453  make
+  454  xkill
+  455  cd /media/data/Dropbox/datamining/projekt/
+  456  python reader.py 
+  457  python reader.py 
+  458  python reader.py 
+  459  python reader.py 
+  460  python reader.py 
+  461  python reader.py 
+  462  python reader.py 
+  463  python reader.py 
+  464  python reader.py 
+  465  python reader.py 
+  466  python reader.py 
+  467  python reader.py 
+  468  python reader2.py 
+  469  python reader2.py 
+  470  python reader2.py 
+  471  python reader2.py 
+  472  python reader2.py 
+  473  python reader2.py 
+  474  python reader2.py 
+  475  cd ~/cpp
+  476  ls
+  477  make
+  478  make
+  479  make
+  480  make
+  481  g++ -g3 -ggdb  -D0 -Wall - Wextra -Wno-unused -o AesOutput test.cpp  -lcryptapp
+  482  g++ -g3 -ggdb  -D0 -Wall -Wextra -Wno-unused -o AesOutput test.cpp  -lcryptapp
+  483  g++ -g3 -ggdb  -D0 -Wall -Wextra -Wno-unused -g -Iinclude /home/rain/cppproject -o AesOutput test.cpp  -lcryptapp
+  484  make
+  485  clear
+  486  make
+  487  ~~~~~~~~~~~~~~~
+  488  c++ obj/test.o -o bin/test
+  489  c++ obj/test.o  -D_copysign=copysign -fpermissive -o bin/test
+  490  c++ obj/test.o  -D_copysign=copysign -fpermissive -g -Iinclude /home/rain/cppproject -o bin/test
+  491  c++ obj/test.o  -D_copysign=copysign -fpermissive -g -Iinclude /home/rain/cppproject -o bin/test
+  492  sudo iwlist wlo1 scan
+  493  gcc -o test test.cpp -L/home/rain/cppproject -lcrypto++
+  494  gcc -o test test.cpp -L/home/rain/cppproject
+  495  sh ./crypttes.sh
+  496  sh ./cryptest.sh
+  497  make
+  498  cd ~/cpp
+  499  make
+  500  sudo iwlist wlo1 scan
+  501  cd spring_workspace/buildit/
+  502  git pull
+  503  git checkout master
+  504  git pull
+  505  cd ..
+  506  git clone https://rain_ut@bitbucket.org/esi_2016/rentit.git
+  507  rm -fr rentit
+  508  git clone https://rain_ut@bitbucket.org/esi_2016/rentit.git
+  509  mc
+  510  cd buildit/frontend/
+  511  docker run -it -v $PWD/app:/source/app mhart/alpine-node sh
+  512  history > history.txt
