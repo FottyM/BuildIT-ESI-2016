@@ -142,9 +142,13 @@ public class PlantHireRequestController {
         return phrdto;
     }
 
-    @RequestMapping(method = POST, path = "/po/{id}/extension")
-    public PurchaseOrderDTO askForExtension(@PathVariable Long id, @RequestBody BusinessPeriodDTO businessPeriodDTO) {
-        return  phrService.extendPurchaseOrder(id,businessPeriodDTO);
+    @RequestMapping(method = POST, path = "/po/extension")
+    public PurchaseOrderDTO askForExtension(@RequestBody String poUrl, @RequestBody BusinessPeriodDTO businessPeriodDTO) {
+
+        System.out.println(poUrl);
+        return null;
+
+        //return  phrService.extendPurchaseOrder(id,businessPeriodDTO);
 
 
 

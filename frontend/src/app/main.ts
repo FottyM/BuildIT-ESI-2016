@@ -15,6 +15,7 @@ import {PlantCatalogService} from './phr/catalog.service';
 import {ProcurementService} from './phr/procurement.service';
 import {PHRListingComponent} from "./phr/phr-requests.component";
 import 'rxjs/Rx';
+import {Modify} from "./orders/modify";
 
 @Component({
   selector: 'app',
@@ -35,7 +36,8 @@ import 'rxjs/Rx';
   new Route({path: '/wizard', name: 'PHRWizard', component: PHRWizardComponent}),
   new Route({path: '/orders', name: 'POListing', component: POListingComponent}),
   new Route({path: '/phrs', name: 'PHRListing', component: PHRListingComponent}),
-  new Route({path:'/login',name:'Login',component:LogInComponent})
+  new Route({path:'/login',name:'Login',component:LogInComponent}),
+  new Route({path:'/modify',name:'Modify',component:Modify})
 ])
 export class AppComponent implements OnActivate {
   constructor (private router: Router, private authenticationService: AuthenticationService) {}

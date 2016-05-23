@@ -52,8 +52,16 @@ export class POListingComponent implements OnActivate {
             var options = new RequestOptions({ headers: this.authenticationService.headers()});
             console.log(options)
             this.http.get(buildItPort+"/api/buildit/po", options)
-                .subscribe(resp => this.orders = resp.json(),
+                .subscribe(resp => {this.orders = resp.json()
+
+
+                        console.log(this.orders);
+                    },
                     err => console.log(`there was an error ${err.status}`));
+
+
+
+
             return true;
         }
         this.router.navigate(['PHRWizard']);

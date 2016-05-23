@@ -8,13 +8,16 @@ import {Plant, Query, PlantHireRequest, RentalPeriod} from './declarations';
 import {XLink} from "../orders/purchase-order-listing.component";
 import {AuthenticationService} from "../login/auth.services";
 import {Router} from "angular2/router";
+import {PlantCatalogService} from "./catalog.service";
 
 @Injectable()
 export class ProcurementService {
-    phr: PlantHireRequest = new PlantHireRequest();
-    constructor(public http: Http,private auth:AuthenticationService,private router: Router) {
+    phr:PlantHireRequest = new PlantHireRequest();
+
+    constructor(public http:Http, private auth:AuthenticationService, private router:Router, private catalog:PlantCatalogService) {
     }
-    setPlant(plant: Plant, query: Query) {
+
+    setPlant(plant:Plant, query:Query) {
         this.phr.plant = plant;
         this.phr.rentalPeriod = new RentalPeriod();
         this.phr.rentalPeriod.startDate = query.startDate;
@@ -23,19 +26,19 @@ export class ProcurementService {
         this.phr.total = (moment(query.endDate).diff(moment(query.startDate), 'days') + 1) * plant.price;
     }
 
-    returnedStatus: String;
+    returnedStatus:String;
 
-    executeAcceptQuery(url:XLink){
+    executeAcceptQuery(url:XLink) {
 
-        if(url.method=="POST"){
-            this.http.post(url.href,null)
+        if (url.method == "POST") {
+            this.http.post(url.href, null)
                 .subscribe(response => {
                         var x = JSON.parse(JSON.stringify(response));
                         var xx = JSON.parse(x["_body"]);
-                        if(xx["status"] == "accepted"){
+                        if (xx["status"] == "accepted") {
                             var elemId = url.href.split('/')[5];
                             // $("#"+elemId).css("background-color","lightgreen")
-                            this.returnedStatus =  "accepted";
+                            this.returnedStatus = "accepted";
                         }
 
                     },
@@ -43,7 +46,7 @@ export class ProcurementService {
                         alert("Unhandled exception: 0x0C000005");
 
                     });
-        }else if(url.method=="DELETE"){
+        } else if (url.method == "DELETE") {
             this.http.delete(url.href)
                 .subscribe(response => {
                     var x = JSON.parse(JSON.stringify(response));
@@ -58,21 +61,23 @@ export class ProcurementService {
         }
     }
 
-    executePlantHireRequest(){
+    executePlantHireRequest() {
 
-      this.http.post(buildItPort+"/api/buildit/",JSON.stringify({plantUrl:this.phr.plant.url,price:this.phr.plant.price,rentalPeriod:this.phr.rentalPeriod}),this.auth.optionsValueJson())
+        this.http.post(buildItPort + "/api/buildit/", JSON.stringify({
+            plantUrl: this.phr.plant.url,
+            price: this.phr.plant.price,
+            rentalPeriod: this.phr.rentalPeriod
+        }), this.auth.optionsValueJson())
             .subscribe(response => {
 
 
-
-                    if(response.status==201)
-                    {
+                    if (response.status == 201) {
 
 
                         this.router.navigate(['PHRListing']);
-                       
+
                     }
-                else {
+                    else {
                         alert("Sorry something went wrong")
                     }
 
@@ -84,17 +89,17 @@ export class ProcurementService {
                 });
 
     }
-    executePhr(id,accept:boolean){
-       var bb = "reject"
-        if(accept){
-         bb= "accept";
+
+    executePhr(id, accept:boolean) {
+        var bb = "reject"
+        if (accept) {
+            bb = "accept";
         }
 
-        this.http.post(buildItPort+"/api/buildit/phrs/"+id+"/"+bb,null,this.auth.optionsValue())
+        this.http.post(buildItPort + "/api/buildit/phrs/" + id + "/" + bb, null, this.auth.optionsValue())
             .subscribe(response => {
 
-                    if(response.status==201)
-                    {
+                    if (response.status == 201) {
 
 
                         this.router.navigate(['POListing']);
@@ -110,4 +115,30 @@ export class ProcurementService {
                 });
 
     }
+
+
+    modifyPurchaseOrder(query:Query) {
+
+        console.log(this.auth.optionsValue())
+
+
+        var x = buildItPort + "/api/buildit/po/extension";
+        this.http.post(x,
+            JSON.stringify({
+                poUrl: this.catalog.purchaseOrderUrl,
+                businessPeriodDTO: {startDate: query.startDate, endDate: query.endDate}
+            }), this.auth.optionsValueJson())
+            .subscribe(response => {
+
+                    console.log(response)
+                },
+                error => {
+                    alert("error");
+
+                });
+
+
+    }
+
+
 }
