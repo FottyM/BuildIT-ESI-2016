@@ -36,19 +36,20 @@ export class PlantCatalogService {
 
         if(url.method=="POST"){
 
+
             if(url._rel=="extend"){
 
 
               this.purchaseOrderUrl= url.href;
 
-
                 this.router.navigate(['Modify']);
 
-
-
-
             }
-            else{
+
+            else
+
+
+            {
 
 
                 this.http.post(url.href,null)
@@ -66,10 +67,35 @@ export class PlantCatalogService {
             }
 
         }
+
+
+
+
+        else   if(url.method=="GET"){
+            if(url._rel=="cancel"){
+
+                this.http.delete(url.href,null)
+                    .subscribe(response => {
+
+
+
+                            this.router.navigate(['PHRWizard']);
+
+                        },
+                        error => {
+                            alert("sorry something went wrong")
+
+
+                        });
+
+            }
+
+        }
+
         else{
 
 
-               this.http.delete(url.href)
+               this.http.get(url.href)
                 .subscribe(response =>{
                     var x = response.json();
                     this.extension = x.status.response;

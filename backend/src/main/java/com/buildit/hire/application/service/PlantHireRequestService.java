@@ -238,14 +238,14 @@ public class PlantHireRequestService {
 
     public PurchaseOrderDTO extendPurchaseOrder(Long id, BusinessPeriodDTO businessPeriodDTO) {
 
-        PlantHireRequest plantHireRequest = plantHireRequestRepository.findOne(PlantHireRequestID.of(id));
+//        PlantHireRequest plantHireRequest = plantHireRequestRepository.findOne(PlantHireRequestID.of(id));
+//
+//        Pattern p = Pattern.compile(".*s\\/ *(.*)");
+//        Matcher m = p.matcher(plantHireRequest.getPoUrl());
+//        m.find();
+//        Long poId = Long.parseLong(m.group(1));
 
-        Pattern p = Pattern.compile(".*s\\/ *(.*)");
-        Matcher m = p.matcher(plantHireRequest.getPoUrl());
-        m.find();
-        Long poId = Long.parseLong(m.group(1));
-
-        return rentalService.extendPurchaseOrder(poId,businessPeriodDTO);
+        return rentalService.extendPurchaseOrder(id,businessPeriodDTO);
     }
 
 }
