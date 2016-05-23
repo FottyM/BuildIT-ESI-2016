@@ -119,6 +119,8 @@ public class PlantHireRequestService {
         PlantHireRequest rejectedPhr = _findPlantHireRequest(PlantHireRequestID.of(id));
         rejectedPhr.setStatus(PlantHireRequestStatus.REJECTED);
 
+        rentalService.cancelPurchaseOrder(phr.getPoUrl());
+
 
         PlantHireRequestDTO pp = new PlantHireRequestAssembler().toResource(plantHireRequestRepository.save(rejectedPhr));
 

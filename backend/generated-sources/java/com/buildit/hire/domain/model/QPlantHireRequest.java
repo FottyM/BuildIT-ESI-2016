@@ -32,6 +32,8 @@ public class QPlantHireRequest extends EntityPathBase<PlantHireRequest> {
 
     public final NumberPath<Long> plantId = createNumber("plantId", Long.class);
 
+    public final StringPath plantUrl = createString("plantUrl");
+
     public final StringPath poUrl = createString("poUrl");
 
     public final NumberPath<java.math.BigDecimal> price = createNumber("price", java.math.BigDecimal.class);
