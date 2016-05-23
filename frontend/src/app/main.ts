@@ -16,6 +16,7 @@ import {ProcurementService} from './phr/procurement.service';
 import {PHRListingComponent} from "./phr/phr-requests.component";
 import 'rxjs/Rx';
 import {Modify} from "./orders/modify";
+import {Invoices} from "./invoices/po-invoice";
 
 @Component({
   selector: 'app',
@@ -37,7 +38,10 @@ import {Modify} from "./orders/modify";
   new Route({path: '/orders', name: 'POListing', component: POListingComponent}),
   new Route({path: '/phrs', name: 'PHRListing', component: PHRListingComponent}),
   new Route({path:'/login',name:'Login',component:LogInComponent}),
-  new Route({path:'/modify',name:'Modify',component:Modify})
+  new Route({path:'/modify',name:'Modify',component:Modify}),
+  new Route({path:'/Invoices',name:'Invoices',component:Invoices})
+
+
 ])
 export class AppComponent implements OnActivate {
   constructor (private router: Router, private authenticationService: AuthenticationService) {}

@@ -23,13 +23,7 @@ export class XLink {
     method: string;
 }
 
-class PurchaseOrder {
-    plant: Plant;
-    rentalPeriod: RentalPeriod;
-    status: string;
-    total: number;
-    _xlinks: XLink[];
-}
+
 class PlantHireRequest{
     status: string;
     price: number;
@@ -37,7 +31,19 @@ class PlantHireRequest{
     plant: Plant;
     supplier:string;
 }
+export class Invoice {
+    poId: number;
+    email: string;
+    total: number;
+}
 
+export class PurchaseOrder {
+    plant: Plant;
+    rentalPeriod: RentalPeriod;
+    status: string;
+    total: number;
+    _xlinks: XLink[];
+}
 @Component({
   templateUrl: '/app/orders/list.html'
 })

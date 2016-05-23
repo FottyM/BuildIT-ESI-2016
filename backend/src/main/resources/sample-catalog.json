@@ -47,7 +47,7 @@
     },
     "status": "OPEN",
     "isPaid": false,
-    "poUrl": "http://localhost:8090/api/sales/orders/2",
+    "poUrl": "http://localhost:8090/api/sales/orders/102",
     "supplier": "asdf"
   },
   {
@@ -62,7 +62,7 @@
     },
     "status": "OPEN",
     "isPaid": false,
-    "poUrl": "http://localhost:8090/api/sales/orders/3",
+    "poUrl": "http://localhost:8090/api/sales/orders/103",
     "supplier": "Batman"
   }
 ]

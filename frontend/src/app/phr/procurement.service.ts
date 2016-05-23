@@ -1,11 +1,11 @@
 import {Injectable} from 'angular2/core';
-import {Http, RequestOptions} from 'angular2/http';
+import {Http, RequestOptions, Headers} from 'angular2/http';
 
 import moment from 'moment';
 import {buildItPort} from '../Configuration'
 
 import {Plant, Query, PlantHireRequest, RentalPeriod} from './declarations';
-import {XLink} from "../orders/purchase-order-listing.component";
+import {XLink, Invoice} from "../orders/purchase-order-listing.component";
 import {AuthenticationService} from "../login/auth.services";
 import {Router} from "angular2/router";
 import {PlantCatalogService} from "./catalog.service";
@@ -119,18 +119,22 @@ export class ProcurementService {
 
     modifyPurchaseOrder(query:Query) {
 
-        console.log(this.auth.optionsValue())
+
+        var regex = /\d+/g;
+        var string =  this.catalog.purchaseOrderUrl;
+        var matches = string.match(regex);
 
 
-        var x = buildItPort + "/api/buildit/po/extension";
+
+        var x = buildItPort + "/api/buildit/po/"+matches[matches.length-1]+"/extension";
+
         this.http.post(x,
-            JSON.stringify({
-                poUrl: this.catalog.purchaseOrderUrl,
-                businessPeriodDTO: {startDate: query.startDate, endDate: query.endDate}
-            }), this.auth.optionsValueJson())
+            JSON.stringify(
+                {startDate: query.startDate, endDate: query.endDate}
+            ), this.auth.optionsValueJson())
             .subscribe(response => {
 
-                    console.log(response)
+                    this.router.navigate(['POListing']);
                 },
                 error => {
                     alert("error");
@@ -139,6 +143,20 @@ export class ProcurementService {
 
 
     }
+    executeQuery(invoice: Invoice) {
+        var headers = new Headers();
+        headers.append('Content-type', 'application/json');
 
+        this.http.post(buildItPort+"/api/rentit/invoice/sendpayment/", JSON.stringify({"poId":invoice.poId,"email":invoice.email,"total":invoice.total}), new RequestOptions({headers: headers}))
+            .subscribe(response => {
+
+                    alert("success invoice sent")
+                },
+                error => {
+                    alert("error")
+
+
+                });
+    }
 
 }
