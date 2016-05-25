@@ -2,6 +2,7 @@ package com.buildit.invoice.application.service;
 
 import com.buildit.hire.application.service.PlantHireRequestService;
 import com.buildit.hire.domain.model.PlantHireRequest;
+import com.buildit.inventory.application.service.RentalService;
 import com.buildit.invoice.application.dto.InvoiceDTO;
 import com.buildit.invoice.domain.model.Invoice;
 import com.buildit.invoice.domain.model.InvoiceID;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,6 +30,8 @@ public class InvoiceService {
     InvoiceAssembler invoiceAssembler;
     @Autowired
     PlantHireRequestService phrService;
+    @Autowired
+    RentalService rentalService;
 
 
     public Invoice findByPoUrlAndPrice(String poUrl, BigDecimal price){
@@ -39,7 +43,20 @@ public class InvoiceService {
     }
 
     public List<InvoiceDTO> findInvoiceByStatus(InvoiceStatus status) {
-        return invoiceAssembler.toResources(invoiceRepository.findByStatus(status));
+
+
+
+        List<InvoiceDTO>  invoiceDTOs   = new ArrayList<InvoiceDTO>();
+
+        for (Invoice invoice : invoiceRepository.findByStatus(status)){
+
+            InvoiceDTO invoiceDTO = invoiceAssembler.toResource(invoice);
+            invoiceDTO.setPurchase(rentalService.findPurchaseOrderDetails(invoice.getPoLink()));
+                invoiceDTOs.add(invoiceDTO);
+        }
+
+        return invoiceDTOs;
+
     }
 
     public InvoiceDTO saveInvoice(InvoiceDTO invoiceDTO) {

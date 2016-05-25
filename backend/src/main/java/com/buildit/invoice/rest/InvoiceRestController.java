@@ -6,10 +6,7 @@ import com.buildit.invoice.domain.model.InvoiceStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Link;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 
@@ -24,7 +21,8 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
  * Created by rain on 27.04.16.
  */
 @RestController
-@RequestMapping("/api/invoice")
+@RequestMapping("/api/buildit/invoice")
+@CrossOrigin
 public class InvoiceRestController {
     @Autowired
     InvoiceService invoiceService;
@@ -32,8 +30,7 @@ public class InvoiceRestController {
     @RequestMapping(method = GET, path = "/{id}")
     public InvoiceDTO getInvoice( @PathVariable Long id) throws Exception {
         InvoiceDTO response = invoiceService.findInvoice(id);
-        //response.
-        //response.add(new Link("http://localhost:8080/asdf/1")); //spring hateoeas
+
         response.removeLinks();
 
         return response;
@@ -42,9 +39,10 @@ public class InvoiceRestController {
     @RequestMapping(method = GET, path = "/")
     public List<InvoiceDTO> listInvoices() throws Exception {
         List<InvoiceDTO> responses = invoiceService.findInvoiceByStatus(InvoiceStatus.RECEIVED);
-        //response.
-        //response.add(new Link("http://localhost:8080/asdf/1")); //spring hateoeas
-        //response.removeLinks();
+
+
+
+
 
         return responses;
     }
@@ -53,7 +51,7 @@ public class InvoiceRestController {
     @RequestMapping(method = POST, path = "")
     public ResponseEntity<InvoiceDTO> createInvoice(@RequestBody InvoiceDTO invoiceDTO) throws Exception {
 
-        //invoiceDTO.add(new Link("http://localhost:8080/asdf/1"));
+
         List<Link> lnks = invoiceDTO.getLinks();
         String link = "";
         for (Link l : lnks) {

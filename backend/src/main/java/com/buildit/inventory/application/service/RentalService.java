@@ -89,10 +89,21 @@ public class RentalService {
 
 
     public PurchaseOrderDTO findPurchaseOrderDetails(String poUlr) {
+
+
+
+
+
         PurchaseOrderDTO purchaseOrderDTO = restTemplate.getForObject(poUlr,
                 PurchaseOrderDTO.class);
+
+
+
+
         return purchaseOrderDTO;
     }
+
+
     public PurchaseOrderDTO extendPurchaseOrder(Long id, BusinessPeriodDTO businessPeriodDTO) {
         try {
             ResponseEntity<PurchaseOrderDTO> result = restTemplate.postForEntity(
