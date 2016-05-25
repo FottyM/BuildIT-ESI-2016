@@ -22,24 +22,64 @@ import {Invoices} from "./invoices/po-invoice";
   selector: 'app',
   directives: [ROUTER_DIRECTIVES],
   template: `
+<section class="main-container">
+    <div class="container-fluid">
+        <div class="page-header filled img-bg">
+            <div class="overlay-bg">
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>BUILD IT </h2>
+                    <p>Construction meets perfect</p>
+                </div>
+                <div class="col-md-6">
+                    <ul class="list-page-breadcrumb">
+                        <li> <a [routerLink]="['PHRWizard']">Create PHR</a></li>
+                        <li><a [routerLink]="['PHRListing']">List all PHR's</a></li>
+                        <li class="active-page">  <a [routerLink]="['POListing']">List all POs</a></li>
+                        <li class="active-page">   <a [routerLink]="['Login']">Login Page</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
     <nav>
-      <a [routerLink]="['PHRWizard']">Create PHR</a>
-       <a [routerLink]="['PHRListing']">List all PHR's</a>
-      <a [routerLink]="['POListing']">List all POs</a>
-      <a [routerLink]="['Login']">Login Page</a>
+     
+       
+       
     </nav>
-    <h1> WELCOME TO BUILD IT</h1>
+   <router-outlet></router-outlet>
+
+    </div>
+    <!--Footer Start Here -->
+    <footer class="footer-container">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <div class="footer-left">
+                        <span>© 2016 <a href="http://themeforest.net/user/westilian">Build it</a></span>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <div class="footer-right">
+                        <span class="footer-meta">Build it &nbsp;<i class="fa fa-heart"></i>&nbsp;by&nbsp;<a href="#">Team</a></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--Footer End Here -->
+</section>
     
-    <router-outlet></router-outlet>
   `
+
 })
 @RouteConfig([
   new Route({path: '/wizard', name: 'PHRWizard', component: PHRWizardComponent}),
   new Route({path: '/orders', name: 'POListing', component: POListingComponent}),
   new Route({path: '/phrs', name: 'PHRListing', component: PHRListingComponent}),
   new Route({path:'/login',name:'Login',component:LogInComponent}),
-  new Route({path:'/modify',name:'Modify',component:Modify}),
-  new Route({path:'/Invoices',name:'Invoices',component:Invoices})
+  new Route({path:'/modify',name:'Modify',component:Modify})
 
 
 ])
