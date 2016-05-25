@@ -14,7 +14,7 @@ import org.springframework.data.repository.init.Jackson2RepositoryPopulatorFacto
 import java.io.IOException;
 
 @Configuration
-@Profile("dev")
+@Profile({"dev","docker"})
 public class DatabasePopulator {
     @Autowired
     @Qualifier("objectMapper")
@@ -22,7 +22,7 @@ public class DatabasePopulator {
     @Bean
     public Jackson2RepositoryPopulatorFactoryBean repositoryPopulator() throws IOException {
 
-        System.out.println("Hit");
+
         Resource sourceData = new ClassPathResource("sample-catalog.json");
         Jackson2RepositoryPopulatorFactoryBean factory = new Jackson2RepositoryPopulatorFactoryBean();
         mapper.registerModule(new JavaTimeModule());
