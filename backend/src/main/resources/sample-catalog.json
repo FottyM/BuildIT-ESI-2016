@@ -2,21 +2,21 @@
   {
     "_class": "com.buildit.invoice.domain.model.Invoice",
     "id": 2,
-    "poLink": "http://rentit.com/api/sales/orders/2",
+    "poLink": "http://localhost:8090/api/sales/orders/2",
     "total": 150,
     "status": "ACCEPTED"
   },
   {
     "_class": "com.buildit.invoice.domain.model.Invoice",
     "id": 3,
-    "poLink": "http://rentit.com/api/sales/orders/3",
+    "poLink": "http://localhost:8090/api/sales/orders/3",
     "total": 150,
     "status": "RECEIVED"
   },
   {
     "_class": "com.buildit.invoice.domain.model.Invoice",
     "id": 4,
-    "poLink": "http://rentit.com/api/sales/orders/4",
+    "poLink": "http://localhost:8090/api/sales/orders/2",
     "total": 250,
     "status": "RECEIVED"
   },
@@ -32,7 +32,7 @@
     },
     "status": "PENDING",
     "isPaid": false,
-    "poUrl": "http://rentit.com/api/sales/orders/2",
+    "poUrl": "http://localhost:8090/api/sales/orders/2",
     "supplier": "asdf"
   },
   {
@@ -47,7 +47,7 @@
     },
     "status": "OPEN",
     "isPaid": false,
-    "poUrl": "http://localhost:8090/api/sales/orders/102",
+    "poUrl": "http://localhost:8090/api/sales/orders/1",
     "supplier": "asdf"
   },
   {
@@ -62,7 +62,7 @@
     },
     "status": "OPEN",
     "isPaid": false,
-    "poUrl": "http://localhost:8090/api/sales/orders/103",
+    "poUrl": "http://localhost:8090/api/sales/orders/3",
     "supplier": "Batman"
   }
 ]

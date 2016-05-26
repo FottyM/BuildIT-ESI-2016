@@ -6,25 +6,29 @@
             <th class="text-center">End date</th>
             <th class="text-center">Total</th>
             <th class="text-center">email</th>
+            <th class="text-center">Status</th>
             <th class="text-center">Actions</th>
 
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="#order of orders">
+        <tr *ngFor="#result of results">
             <td>
-                {{order.plant.name}}
+                {{result.purchase.plant.name}}
 
             </td>
 
-            <td>{{order.rentalPeriod.startDate}}</td>
-            <td>{{order.rentalPeriod.endDate}}</td>
-            <td class='text-right'>{{order.total | number:'.2'}}</td>
-            <td class='text-left'>{{order.email}}</td>
+            <td>{{result.purchase.rentalPeriod.startDate}}</td>
+            <td>{{result.purchase.rentalPeriod.endDate}}</td>
+            <td class='text-right'>{{result.purchase.total | number:'.2'}}</td>
+            <td class='text-left'>{{result.purchase.email}}</td>
+            <td class='text-left'>{{result.status}}</td>
             <td class='text-center'>
 
-                <button ngClass="btn-primary" (click)="follow({'poId':order._links.self.href.slice(-1),'email':order.email,'total':order.total})">
-                   Send Invoice
+                <button ngClass="btn-primary" (click)="sendInvoice(result.poLink,result.purchase.email,result.purchase.total)" >
+                   Send result
+
+
                 </button>
             </td>
         </tr>

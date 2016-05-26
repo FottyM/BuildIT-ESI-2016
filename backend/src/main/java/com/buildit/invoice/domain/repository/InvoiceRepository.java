@@ -16,10 +16,6 @@ import java.util.List;
  * Created by rain on 27.04.16.
  */
 @Repository
-public interface InvoiceRepository extends JpaRepository<Invoice, InvoiceID> {
-    public Invoice findInvoiceByPoLink(String link);
+public interface InvoiceRepository extends JpaRepository<Invoice, InvoiceID>,CustomInvoiceRepository {
 
-    List<Invoice> findByStatus(InvoiceStatus status);
-
-    Invoice findByPoUrlAndPrice(String poUrl, BigDecimal price);
 }

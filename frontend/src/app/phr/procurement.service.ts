@@ -143,11 +143,11 @@ export class ProcurementService {
 
 
     }
-    executeQuery(invoice: Invoice) {
+    executeQueryInvoice(poId:string,email:string,total:string) {
         var headers = new Headers();
         headers.append('Content-type', 'application/json');
 
-        this.http.post(buildItPort+"/api/rentit/invoice/sendpayment/", JSON.stringify({"poId":invoice.poId,"email":invoice.email,"total":invoice.total}), new RequestOptions({headers: headers}))
+        this.http.post(buildItPort+"/api/buildit/invoice/makepayment", JSON.stringify({"poId":poId,"email":email,"total":total}),this.auth.optionsValueJson())
             .subscribe(response => {
 
                     alert("success invoice sent")
