@@ -1,10 +1,6 @@
 import {Component} from 'angular2/core';
 
 import {Http, RequestOptions} from 'angular2/http';
-
-
-import {Invoice} from "../orders/purchase-order-listing.component.ts";
-import {PurchaseOrder} from "../phr/declarations";
 import {buildItPort} from "../Configuration";
 import {ProcurementService} from "../phr/procurement.service";
 import {OnActivate, Router, ComponentInstruction} from "angular2/router";
@@ -36,6 +32,11 @@ export class Invoices implements OnActivate {
         }
         this.router.navigate(['PHRWizard']);
         return false;
+    }
+    sendInvoice(poid:string,email:string,total:string){
+
+        this.procurementService.executeQueryInvoice(poid,email,total)
+        
     }
  }
 

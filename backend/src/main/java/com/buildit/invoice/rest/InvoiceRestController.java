@@ -93,5 +93,15 @@ public class InvoiceRestController {
         headers.setLocation(new URI(invoiceDTO.getId().getHref()));
         return new ResponseEntity<InvoiceDTO>(invoiceDTO, headers, HttpStatus.CREATED);
     }
+    @RequestMapping(method = POST, path = "/makepayment")
+    public boolean makePayment(@RequestBody InvoiceDTO invoiceDTO) throws Exception {
+        
+        //// TODO: 5/26/2016  create a new dto example payementdto and let it take  so that it takes 3 parameters that where being sent from the
+        ///  buildit backend
 
+       return  true;
+    }
+
+    
+    
 }

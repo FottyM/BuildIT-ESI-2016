@@ -6,6 +6,7 @@
             <th class="text-center">End date</th>
             <th class="text-center">Total</th>
             <th class="text-center">email</th>
+            <th class="text-center">Status</th>
             <th class="text-center">Actions</th>
 
         </tr>
@@ -21,9 +22,10 @@
             <td>{{result.purchase.rentalPeriod.endDate}}</td>
             <td class='text-right'>{{result.purchase.total | number:'.2'}}</td>
             <td class='text-left'>{{result.purchase.email}}</td>
+            <td class='text-left'>{{result.status}}</td>
             <td class='text-center'>
 
-                <button ngClass="btn-primary" >
+                <button ngClass="btn-primary" (click)="sendInvoice(result.poLink,result.purchase.email,result.purchase.total)" >
                    Send result
 
 

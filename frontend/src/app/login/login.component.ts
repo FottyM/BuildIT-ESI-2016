@@ -5,6 +5,7 @@ import {AuthenticationService} from "./auth.services";
 
 @Component({
     template: `
+<div style="margin-top: 100px">
 <form class="form col-md-offset-3 col-md-6" (ngSubmit)="login()">
     <div class="form-group">
         <input type="text" class="form-control input-lg" placeholder="Username" [(ngModel)]="username">
@@ -16,6 +17,8 @@ import {AuthenticationService} from "./auth.services";
         <button class="btn btn-primary btn-lg btn-block">Log In</button>
     </div>
 </form>
+</div>
+
     `
 })
 export class LogInComponent {
