@@ -135,6 +135,14 @@ public class BuilditApplication {
 
     }
 
+    @Bean
+    public  IntegrationFlow receiveInvoiceFlox(){
+        return IntegrationFlows.from("channel1").handle(x-> System.out.println(x))
+
+
+                .get();
+
+    }
 
 
 

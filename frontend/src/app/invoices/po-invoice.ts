@@ -10,7 +10,7 @@ import {AuthenticationService} from "../login/auth.services";
 })
 
 export class Invoices implements OnActivate {
-    results;
+    results; // no idea what this means 
 
 
     constructor (private router: Router,public http:Http,private procurementService:ProcurementService
