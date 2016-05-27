@@ -66,7 +66,7 @@ public class RentalService {
 
     public Boolean cancelPurchaseOrder(String cancelUrl) throws PlantNotAvailableException {
 
-        System.out.println(cancelUrl);
+
         try {
             Map<String, String> params = new HashMap<String, String>();
             restTemplate.delete(cancelUrl,params); ;
@@ -79,6 +79,16 @@ public class RentalService {
         }
         return null;
     }
+    public boolean sendRemintance(Long id) throws PlantNotAvailableException {
+
+         boolean pay  = restTemplate.getForObject("http://" + host + ":" + port + "/api/sales/orders/{id}/payment",
+                boolean.class,id);
+        return  pay;
+
+
+    }
+
+
 
     public List<PlantInventoryEntryDTO> findAvailablePlants(Optional<String> plantName, @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Optional<LocalDate> startDate, @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Optional<LocalDate> endDate) {
 
@@ -174,7 +184,7 @@ public class RentalService {
     }
 
     public PlantInventoryEntryDTO findPlantDetails(Long id) {
-        System.out.println(id);
+
           if (id!=null){
 
 

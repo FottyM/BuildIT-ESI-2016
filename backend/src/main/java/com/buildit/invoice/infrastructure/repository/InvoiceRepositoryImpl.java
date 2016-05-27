@@ -21,9 +21,13 @@ public class InvoiceRepositoryImpl implements CustomInvoiceRepository {
     QInvoice qInvoice= QInvoice.invoice;
 
     public Invoice findInvoiceByPoLink(String link){
-        return new JPAQuery(em)
+
+        Invoice invoice= new JPAQuery(em)
                 .from(qInvoice)
                 .where(qInvoice.poLink.eq(link)).uniqueResult(qInvoice) ;
+
+     return  invoice;
+
     }
 
     @Override

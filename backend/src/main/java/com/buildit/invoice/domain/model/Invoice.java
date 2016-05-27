@@ -36,4 +36,11 @@ public class Invoice {
         invoice.total = total;
         return invoice;
     }
+
+
+    public  void paid(){
+        this.status=InvoiceStatus.PAID;
+    }
+
+
 }
