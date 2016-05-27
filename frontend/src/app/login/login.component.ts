@@ -28,7 +28,8 @@ export class LogInComponent {
     constructor (private router: Router, private authenticationService: AuthenticationService) {}
 
     login() {
-        localStorage.setItem('code', window.btoa(this.username + ":" + this.password));
+
+      localStorage.setItem('code', window.btoa(this.username + ":" + this.password));
 
        
         this.authenticationService.authenticate(() => this.router.navigate(['PHRWizard']));

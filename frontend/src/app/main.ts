@@ -7,16 +7,15 @@ import {
     RouteConfig, Route, ROUTER_PROVIDERS, ROUTER_DIRECTIVES, OnActivate, Router,
     ComponentInstruction
 } from 'angular2/router';
-
-import {AuthenticationService} from "./login/auth.services";
-import {ProcurementService} from "./phr/procurement.service";
 import {PHRWizardComponent} from "./phr/phr-wizard.component";
+import {PHRListingComponent} from "./phr/phr-requests.component";
+import {POListingComponent} from "./orders/purchase-order-listing.component";
 import {LogInComponent} from "./login/login.component";
 import {Modify} from "./orders/modify";
-import {POListingComponent} from "./orders/purchase-order-listing.component";
-import {PlantCatalogService} from "./phr/catalog.service";
-import {PHRListingComponent} from "./phr/phr-requests.component";
 import {Invoices} from "./invoices/po-invoice";
+import {AuthenticationService} from "./login/auth.services";
+import {PlantCatalogService} from "./phr/catalog.service";
+import {ProcurementService} from "./phr/procurement.service";
 
 
 @Component({
@@ -45,12 +44,12 @@ import {Invoices} from "./invoices/po-invoice";
                 <ul id="sidebar-menu">
                     <li class="header"><span>Menu Items</span>
                     </li>
-                  
-                    <li>   <a [routerLink]="['Login']"><i class="glyph-icon icon-linecons-diamond"></i> <span>Login</span></a></li>
+                   <li>   <a [routerLink]="['Login']"><i class="glyph-icon icon-linecons-diamond"></i> <span>Login</span></a></li>
                      <li>   <a [routerLink]="['PHRWizard']"><i class="glyph-icon icon-linecons-diamond"></i> <span>Create</span></a></li>
                         <li>   <a [routerLink]="['PHRListing']"><i class="glyph-icon icon-linecons-diamond"></i> <span>PHR Requests</span></a></li>
                          <li>   <a [routerLink]="['POListing']"><i class="glyph-icon icon-linecons-diamond"></i> <span>Purchase Orders</span></a></li>
                        <li>   <a [routerLink]="['Invoices']"><i class="glyph-icon icon-linecons-diamond"></i> <span>Pending Invoices</span></a></li>
+
 
 
                 </ul>
@@ -74,8 +73,9 @@ import {Invoices} from "./invoices/po-invoice";
       
            
     </nav>
-    <h1> WELCOME TO BUILD IT </h1>
-     <router-outlet></router-outlet>
+    <h1> WELCOME TO BUILDIT </h1>
+    
+    <router-outlet></router-outlet>
                 </div>
 
             </div>
@@ -86,14 +86,15 @@ import {Invoices} from "./invoices/po-invoice";
   `
 })
 @RouteConfig([
+
   new Route({path: '/wizard', name: 'PHRWizard', component: PHRWizardComponent}),
   new Route({path: '/phrs', name: 'PHRListing', component: PHRListingComponent}),
-   new Route({path: '/orders', name: 'POListing', component: POListingComponent}),
-   new Route({path:'/login',name:'Login',component:LogInComponent}),
-   new Route({path:'/modify',name:'Modify',component:Modify}),
-    new Route({path:'/invoices',name:'Invoices',component:Invoices})
-    
- ])
+  new Route({path: '/orders', name: 'POListing', component: POListingComponent}),
+  new Route({path:'/login',name:'Login',component:LogInComponent}),
+  new Route({path:'/modify',name:'Modify',component:Modify}),
+  new Route({path:'/invoices',name:'Invoices',component:Invoices})
+
+])
 export class AppComponent implements OnActivate {
   constructor (private router: Router, private authenticationService: AuthenticationService) {}
 

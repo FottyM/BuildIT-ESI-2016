@@ -49,7 +49,7 @@ export class PHRWizardComponent  implements OnActivate {
     }
 
     routerOnActivate(next: ComponentInstruction, prev: ComponentInstruction) {
-        if (this.authenticationService.checkRoles(['WORK_ENGINEER'])) {
+        if (this.authenticationService.checkRoles(['WORK_ENGINEER','SITE_ENGINEER'])) {
             var options = new RequestOptions({ headers: this.authenticationService.headers()});
                this.options=options;
             return true;
@@ -72,5 +72,7 @@ export class PHRWizardComponent  implements OnActivate {
     }
     backToQueryTab(){
         this.router.navigate(['PHRWizard']);
+
+
     }
 }
