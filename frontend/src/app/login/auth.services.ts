@@ -11,6 +11,8 @@ export class AuthenticationService {
     constructor (private http: Http, private router: Router) {}
     authenticate(callback) {
         var options = new RequestOptions({ headers: this.headers()});
+
+        
         this.http.get(buildItPort+"/api/authenticate", options)
             .subscribe( resp => { this.roles = resp.json();
                 console.log(resp.json());

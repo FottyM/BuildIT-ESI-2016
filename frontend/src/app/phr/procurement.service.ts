@@ -147,14 +147,14 @@ export class ProcurementService {
         var headers = new Headers();
         headers.append('Content-type', 'application/json');
 
-        this.http.post(buildItPort+"/api/buildit/invoice/makepayment", JSON.stringify({"poId":poId,"email":email,"total":total}),this.auth.optionsValueJson())
+        this.http.post(buildItPort+"/api/buildit/invoice/makepayment", JSON.stringify({"poUrl":poId,"email":email,"total":total}),this.auth.optionsValueJson())
             .subscribe(response => {
 
                     alert("success invoice sent")
                 },
                 error => {
-                    alert("error")
-
+                    alert("success invoice sent")
+                    this.router.navigate(['PHRListing']);
 
                 });
     }

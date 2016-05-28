@@ -4,6 +4,8 @@
             <th class="text-center">Name</th>
             <th class="text-center">Description</th>
             <th class="text-center">Price</th>
+            <th class="text-center">Supplier</th>
+
             <th class="text-center">Actions</th>
         </tr>
     </thead>
@@ -12,6 +14,7 @@
             <td>{{plant.name}}</td>
             <td>{{plant.description}}</td>
             <td class="text-right">{{plant.price | number:'.2'}}</td>
+            <td>{{plant.supplier}}</td>
             <td>
             <form style ='float:center; padding:5px; height:0px' ><button class="btn btn-default btn-xs" (click)="selectPlant(plant,plant._links.self.href)">Select plant <span class="glyphicon glyphicon-ok"></span></button></form>
             </td>

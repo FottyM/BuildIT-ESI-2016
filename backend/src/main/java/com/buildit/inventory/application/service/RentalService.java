@@ -66,7 +66,7 @@ public class RentalService {
 
     public Boolean cancelPurchaseOrder(String cancelUrl) throws PlantNotAvailableException {
 
-        System.out.println(cancelUrl);
+
         try {
             Map<String, String> params = new HashMap<String, String>();
             restTemplate.delete(cancelUrl,params); ;
@@ -79,12 +79,74 @@ public class RentalService {
         }
         return null;
     }
+    public boolean sendRemintance(Long id) throws PlantNotAvailableException {
+
+         boolean pay  = restTemplate.getForObject("http://" + host + ":" + port + "/api/sales/orders/{id}/payment",
+                boolean.class,id);
+        return  pay;
+
+
+    }
+
+
 
     public List<PlantInventoryEntryDTO> findAvailablePlants(Optional<String> plantName, @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Optional<LocalDate> startDate, @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Optional<LocalDate> endDate) {
-        PlantInventoryEntryDTO[] plants = restTemplate.getForObject(
+
+        List<PlantInventoryEntryDTO>  renturnedDt0  = new ArrayList<PlantInventoryEntryDTO>();
+        List<PlantInventoryEntryDTO>  list1  = new ArrayList<PlantInventoryEntryDTO>();
+        List<PlantInventoryEntryDTO>  list2  = new ArrayList<PlantInventoryEntryDTO>();
+        List<PlantInventoryEntryDTO>  list3  = new ArrayList<PlantInventoryEntryDTO>();
+
+        List<PlantInventoryEntryDTO>  list1f  = new ArrayList<PlantInventoryEntryDTO>();
+        List<PlantInventoryEntryDTO>  list2f  = new ArrayList<PlantInventoryEntryDTO>();
+        List<PlantInventoryEntryDTO>  list3f  = new ArrayList<PlantInventoryEntryDTO>();
+
+        PlantInventoryEntryDTO[] plants1 = restTemplate.getForObject(
                 "http://" + host + ":" + port + "api/inventory/plants?name={name}&startDate={start}&endDate={end}",
                 PlantInventoryEntryDTO[].class, plantName.get(), startDate.get(),endDate.get());
-        return Arrays.asList(plants);
+
+
+
+
+        PlantInventoryEntryDTO[] plants2 = restTemplate.getForObject(
+                "http://" + host + ":" + port + "api/inventory/plants?name={name}&startDate={start}&endDate={end}",
+                PlantInventoryEntryDTO[].class, plantName.get(), startDate.get(),endDate.get());
+
+        PlantInventoryEntryDTO[] plants3 = restTemplate.getForObject(
+                "http://" + host + ":" + port + "api/inventory/plants?name={name}&startDate={start}&endDate={end}",
+                PlantInventoryEntryDTO[].class, plantName.get(), startDate.get(),endDate.get());
+        list1= Arrays.asList(plants1);
+        list2= Arrays.asList(plants2);
+        list3= Arrays.asList(plants3);
+
+        for (PlantInventoryEntryDTO plantInventoryEntryDTO : list1){
+             list1f.add(addSupplierName(plantInventoryEntryDTO,"Rentit 1"));
+        }
+        for (PlantInventoryEntryDTO plantInventoryEntryDTO : list2){
+            list2f.add(addSupplierName(plantInventoryEntryDTO,"Rentit 2"));
+        }
+        for (PlantInventoryEntryDTO plantInventoryEntryDTO : list3){
+            list3f.add(addSupplierName(plantInventoryEntryDTO,"Rentit 3"));
+        }
+
+
+          renturnedDt0.addAll(list1f);
+          renturnedDt0.addAll(list2f);
+          renturnedDt0.addAll(list3f);
+
+
+        return  renturnedDt0;
+
+
+
+
+
+    }
+
+    private  PlantInventoryEntryDTO addSupplierName(PlantInventoryEntryDTO plantInventoryEntryDTO, String name){
+           plantInventoryEntryDTO.setSupplier(name);
+          return plantInventoryEntryDTO;
+
     }
 
 
@@ -122,7 +184,7 @@ public class RentalService {
     }
 
     public PlantInventoryEntryDTO findPlantDetails(Long id) {
-        System.out.println(id);
+
           if (id!=null){
 
 

@@ -1,13 +1,16 @@
 package com.buildit.invoice.rest;
 
+import com.buildit.inventory.application.service.RentalService;
 import com.buildit.invoice.application.dto.InvoiceDTO;
 import com.buildit.invoice.application.dto.PaymentDTO;
+
 import com.buildit.invoice.application.service.InvoiceGateway;
 import com.buildit.invoice.application.service.InvoiceService;
 import com.buildit.invoice.domain.model.InvoiceStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Link;
 import org.springframework.http.ResponseEntity;
+
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -19,6 +22,8 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.util.ByteArrayDataSource;
 import java.net.URI;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
@@ -27,6 +32,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
  * Created by rain on 27.04.16.
  */
 @RestController
+
 @RequestMapping("/api/buildit/invoice")
 @CrossOrigin
 public class InvoiceRestController {
@@ -35,6 +41,8 @@ public class InvoiceRestController {
 
     @Autowired
     InvoiceGateway invoiceGateway;
+    @Autowired
+    RentalService rentalService;
 
     @RequestMapping(method = GET, path = "/{id}")
     public InvoiceDTO getInvoice( @PathVariable Long id) throws Exception {
@@ -105,45 +113,27 @@ public class InvoiceRestController {
     @RequestMapping(method = POST, path = "/makepayment")
     public String makePayment(@RequestBody PaymentDTO paymentDTO ) throws Exception {
 
-        System.out.println("Arrived at make payment ");
-        //// TODO: 5/26/2016  create a new dto example payementdto and let it take  so that it takes 3 parameters that where being sent from the
-        ///  buildit backend
-        // poUrl
-        // Total amount of money
-        // email of the guy
-
-        String email = paymentDTO.getEmail();
+            String email = paymentDTO.getEmail();
         String poUrl = paymentDTO.getPoUrl();
-        int total = paymentDTO.getTotal();
 
-        JavaMailSender mailSender = new JavaMailSenderImpl();
 
-        String remmitance =
-                "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"+
-                        "<invoice>\n"+
-                        "	<purchaseOrderHRef>http://rentit.com/api/sales/orders/"+ poUrl +"</purchaseOrderHRef>\n"+
-                        "	<total>" + total + "</total> \n" +
-                        "   <email>" + email + "</email> \n " +
-                        "</invoice>\n";
+        Pattern p = Pattern.compile(".*s\\/ *(.*)");
+         Matcher m = p.matcher(poUrl);
+        m.find();
+        Long poId = Long.parseLong(m.group(1));
 
-        MimeMessage rootMessage = mailSender.createMimeMessage();
-        MimeMessageHelper helper = new MimeMessageHelper(rootMessage, true);
-        helper.setFrom("agabaisaacsoftwares@gmail.com");
-        helper.setTo(email);
-        helper.setSubject("Invoice Purchase Order " + poUrl );
-        helper.setText("Dear customer,\n\nPlease find attached the Invoice corresponding to your Purchase Order "+ poUrl +".\n\nKindly yours,\n\nRentIt Team!");
-
-        helper.addAttachment("invoice-po-" + poUrl + ".xml", new ByteArrayDataSource(remmitance, "application/xml"));
+        boolean result = rentalService.sendRemintance(poId);
+        if(result){
+              invoiceService.invoicePaid(poUrl);
+            return "sent";
 
 
 
-        invoiceGateway.sendRemittance(rootMessage);
+        }
+        else {
+            return "error";
+        }
 
-        System.out.println(paymentDTO);
-
-       // if(salesService.invoiceSent(po.getPoId())){}
-
-        return "sent";
     }
 
 }

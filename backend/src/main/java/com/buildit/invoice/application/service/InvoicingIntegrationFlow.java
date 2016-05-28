@@ -1,5 +1,6 @@
 package com.buildit.invoice.application.service;
 
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -7,7 +8,6 @@ import org.springframework.integration.annotation.IntegrationComponentScan;
 import org.springframework.integration.dsl.IntegrationFlow;
 import org.springframework.integration.dsl.IntegrationFlows;
 import org.springframework.integration.dsl.mail.Mail;
-
 /**
  * Created by akaiz on 5/3/2016.
  */
@@ -21,8 +21,9 @@ public class InvoicingIntegrationFlow {
     String gmailPassword;
     @Bean
     IntegrationFlow sendInvoiceFlow() {
-        System.out.println("");
-        return IntegrationFlows.from("channel1")
+
+
+        return IntegrationFlows.from("sendInvoiceChannel")
                 .handle(Mail.outboundAdapter("smtp.gmail.com")
                         .port(465)
                         .protocol("smtps")

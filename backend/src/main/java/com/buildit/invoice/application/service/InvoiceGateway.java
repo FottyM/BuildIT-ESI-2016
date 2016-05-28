@@ -12,7 +12,7 @@ import javax.mail.internet.MimeMessage;
 @MessagingGateway
 public interface InvoiceGateway {
 
-    @Gateway(replyChannel = "channel1")
+    @Gateway(replyChannel = "sendInvoiceChannel")
     public void sendRemittance(MimeMessage message);
 
 }

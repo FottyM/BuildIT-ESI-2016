@@ -16,6 +16,6 @@ public class PlantInventoryEntryDTO extends ResourceSupport {
     String name;
     String description;
     BigDecimal price;
-   // List<Link> _links;
+    String supplier;
 }
 

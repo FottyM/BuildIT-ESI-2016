@@ -96,12 +96,21 @@ public class InvoiceService {
     public void payInvoice(String poLink, BigDecimal poTotal){
 
         PlantHireRequest phr = phrService._getPlantHireRequestByPoUrlAndPrice(poLink,poTotal);
-        phr.setIsPaid(true);
+         phr.setIsPaid(Boolean.TRUE);
         phrService.save(phr);
 
         Invoice invoice = invoiceRepository.findInvoiceByPoLink(poLink);
-        invoice.setStatus(InvoiceStatus.PAID);
+        invoice.paid();
         invoiceRepository.save(invoice);
+
+    }
+    public void invoicePaid(String url){
+
+
+
+        Invoice invoice = invoiceRepository.findInvoiceByPoLink(url);
+        invoice.paid();
+        Invoice c=    invoiceRepository.save(invoice);
 
     }
 }

@@ -80,37 +80,37 @@ public class BuilditApplication {
     }
 
 
-
-    @MessagingGateway
-    interface InvoicingGateway {
-        @Gateway(requestChannel = "sendInvoiceChannel")
-        public void sendInvoice(MimeMessage msg);
-    }
+//
+//    @MessagingGateway
+//    interface InvoicingGateway {
+//        @Gateway(requestChannel = "sendInvoiceChannel")
+//        public void sendInvoice(MimeMessage msg);
+//    }
 
 
     public static void main(String[] args) throws Exception {
         ConfigurableApplicationContext ctx = SpringApplication.run(BuilditApplication.class, args);
-        InvoicingGateway service = ctx.getBean(InvoicingGateway.class);
-
-
-
-        JavaMailSender mailSender = new JavaMailSenderImpl();
-        String invoice1 =
-                "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"+
-                        "<invoice>\n"+
-                        "	<purchaseOrderHRef>http://rentit.com/api/sales/orders/1</purchaseOrderHRef>\n"+
-                        "	<total>150.00</total>\n"+
-                        "</invoice>\n";
-
-        MimeMessage rootMessage = mailSender.createMimeMessage();
-        MimeMessageHelper helper = new MimeMessageHelper(rootMessage, true);
-        helper.setFrom("agabaisaacsoftwares@gmail.com");
-        helper.setTo("agabaisaacsoftwares@gmail.com");
-        helper.setSubject("Invoice Purchase Order 123");
-        helper.setText("Dear customer,\n\nPlease find attached the Invoice corresponding to your Purchase Order 123.\n\nKindly yours,\n\nRentIt Team!");
-
-        helper.addAttachment("invoice-po-123.xml", new ByteArrayDataSource(invoice1, "application/xml"));
-        service.sendInvoice(rootMessage);
+//        InvoicingGateway service = ctx.getBean(InvoicingGateway.class);
+//
+//
+//
+//        JavaMailSender mailSender = new JavaMailSenderImpl();
+//        String invoice1 =
+//                "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"+
+//                        "<invoice>\n"+
+//                        "	<purchaseOrderHRef>http://rentit.com/api/sales/orders/1</purchaseOrderHRef>\n"+
+//                        "	<total>150.00</total>\n"+
+//                        "</invoice>\n";
+//
+//        MimeMessage rootMessage = mailSender.createMimeMessage();
+//        MimeMessageHelper helper = new MimeMessageHelper(rootMessage, true);
+//        helper.setFrom("agabaisaacsoftwares@gmail.com");
+//        helper.setTo("agabaisaacsoftwares@gmail.com");
+//        helper.setSubject("Invoice Purchase Order 123");
+//        helper.setText("Dear customer,\n\nPlease find attached the Invoice corresponding to your Purchase Order 123.\n\nKindly yours,\n\nRentIt Team!");
+//
+//        helper.addAttachment("invoice-po-123.xml", new ByteArrayDataSource(invoice1, "application/xml"));
+//        service.sendInvoice(rootMessage);
     }
 
 
@@ -135,28 +135,28 @@ public class BuilditApplication {
 
     }
 
-    @Bean
-    public  IntegrationFlow receiveInvoiceFlox(){
-        return IntegrationFlows.from("channel1").handle(x-> System.out.println(x))
+//    @Bean
+//    public  IntegrationFlow receiveInvoiceFlox(){
+//        return IntegrationFlows.from("channel1").handle(x-> System.out.println(x))
+//
+//
+//                .get();
+//
+//    }
 
 
-                .get();
-
-    }
 
 
-
-
-    @Bean
-    IntegrationFlow sendInvoiceFlow() {
-        return IntegrationFlows.from("sendInvoiceChannel")
-                .handle(Mail.outboundAdapter("smtp.gmail.com")
-                        .port(465)
-                        .protocol("smtps")
-                        .credentials(gmailUsername, gmailPassword)
-                        .javaMailProperties(p -> p.put("mail.debug", "false"))
-                )
-
-                .get();
-    }
+//    @Bean
+//    IntegrationFlow sendInvoiceFlow() {
+//        return IntegrationFlows.from("sendInvoiceChannel")
+//                .handle(Mail.outboundAdapter("smtp.gmail.com")
+//                        .port(465)
+//                        .protocol("smtps")
+//                        .credentials(gmailUsername, gmailPassword)
+//                        .javaMailProperties(p -> p.put("mail.debug", "false"))
+//                )
+//
+//                .get();
+//    }
 }
